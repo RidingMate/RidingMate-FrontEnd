@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import MainPage from './pages/Main'
-import SellPage from './pages/Sell'
+import SellPage from './pages/sell/Sell'
 
 const RouteList = () => {
   return (
