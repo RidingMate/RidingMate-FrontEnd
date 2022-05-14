@@ -1,6 +1,8 @@
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import Layout from '../../components/sell/Layout'
 import Card from '../../components/sell/Card'
+import { useNavigate } from 'react-router-dom'
 
 const Wrap = styled.div`
   width: 100%;
@@ -33,6 +35,35 @@ const MyBikeArea = styled.div`
   align-items: center;
 `
 
+const MyBikeContainer = styled.div`
+  :not(:last-of-type) {
+    margin-right: 80px;
+  }
+`
+
+const ButtonContainer = styled.div`
+  margin-top: 100px;
+`
+
+const Button = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 250px;
+  height: 70px;
+  background: ${(props) => props.bColor};
+  border-radius: 15px;
+
+  font-family: 'Apple SD Gothic Neo';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 17px;
+  color: #ffffff;
+
+  cursor: pointer;
+`
+
 const myBike = [
   {
     key: 'sss1',
@@ -49,6 +80,13 @@ const myBike = [
 ]
 
 const Sell = () => {
+  const [selected, setSelected] = useState([])
+  const navigate = useNavigate()
+
+  const selectSellBike = (title) => {
+    setSelected(title)
+  }
+
   return (
     <Layout title="SELL" smallTitle="판매하기">
       <Wrap>
@@ -56,14 +94,27 @@ const Sell = () => {
         <Title>판매할 바이크를 선택하세요.</Title>
         <MyBikeArea>
           {myBike.map((item) => (
-            <Card
+            <MyBikeContainer
               key={item.key}
-              title={item.title}
-              subTitle={item.subTitle}
-              img={item.img}
-            />
+              onClick={() => selectSellBike(item.title)}
+            >
+              <Card
+                title={item.title}
+                subTitle={item.subTitle}
+                img={item.img}
+                selected={selected}
+              />
+            </MyBikeContainer>
           ))}
         </MyBikeArea>
+        <ButtonContainer>
+          <Button
+            bColor={selected.length !== 0 ? '#222222' : '#dddddd'}
+            onClick={() => navigate('/sell/my-bike/write')}
+          >
+            다음
+          </Button>
+        </ButtonContainer>
       </Wrap>
     </Layout>
   )

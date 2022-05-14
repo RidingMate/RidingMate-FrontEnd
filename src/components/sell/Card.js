@@ -1,11 +1,10 @@
 import styled from 'styled-components'
 
 const Wrap = styled.div`
-  width: 290px;
-  height: 385px;
+  /* width: 290px;
+  height: 385px; */
 
-  border: 10px solid #ffffff;
-  border-radius: 25px;
+  padding: 30px;
 
   cursor: pointer;
 
@@ -33,15 +32,16 @@ const Wrap = styled.div`
     margin-top: 25px;
   }
 
-  :not(:last-of-type) {
-    margin-right: 80px;
+  &.selected {
+    border: 10px solid rgba(153, 153, 153, 0.5);
+    border-radius: 25px;
   }
 `
 const Card = (props) => {
-  const { title, subTitle, img } = props
+  const { title, subTitle, img, selected } = props
 
   return (
-    <Wrap>
+    <Wrap className={selected.includes(title) ? 'selected' : ''}>
       <div className="title">{title}</div>
       <div className="subTitle">{subTitle}</div>
       <img className="img" src={img} alt={subTitle} />
