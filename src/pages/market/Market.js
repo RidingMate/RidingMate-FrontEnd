@@ -5,6 +5,8 @@ import Card from '../../components/market/Card'
 import SearchForm from '../../components/market/SearchForm'
 import LeftArrow from './leftArrowIcon.svg'
 import RightArrow from './rightArrowIcon.svg'
+import SortIcon from './sortIcon.svg'
+
 // import { useNavigate } from 'react-router-dom'
 
 const Wrap = styled.div`
@@ -53,46 +55,184 @@ const ContentContainer = styled.div`
 `
 
 const FilterContainer = styled.div`
-  width: 315px;
-  height: 100vh;
-  border: 1px solid black;
+  /* width: 315px; */
+  /* height: 100vh; */
+  /* border: 1px solid black; */
   margin-right: 45px;
+  margin-bottom: 138px;
+
+  .title {
+    font-family: 'Apple SD Gothic Neo';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    /* line-height: 30px; */
+
+    color: #222222;
+  }
+`
+
+const SortContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  font-family: 'Apple SD Gothic Neo';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 18px;
+  /* identical to box height */
+
+  color: #222222;
+
+  margin-bottom: 20px;
+
+  img {
+    margin-left: 5px;
+  }
 `
 
 const MyBikeArea = styled.div`
   display: flex;
-  flex-direction: row;
-  /* align-items: center; */
+  flex-direction: column;
 `
 
-const MyBikeContainer = styled.div`
-  :not(:last-of-type) {
-    margin-right: 40px;
+const ListContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  row-gap: 40px;
+  column-gap: 60px;
+`
+
+const CardContainer = styled.div`
+  /* :not(:last-of-type) { */
+  /* margin-right: 40px; */
+  /* } */
+`
+
+const Divider = styled.div`
+  width: 100%;
+  height: 1px;
+  border: 1px solid #dddddd;
+`
+
+const InfoWrap = styled.div`
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+
+  .inputItem {
+    display: flex;
+    align-items: center;
+  }
+
+  .name {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    font-family: 'Apple SD Gothic Neo';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    color: #555555;
+    margin-right: 25px;
+  }
+
+  select {
+    width: 400px;
+    height: 60px;
+    padding: 20px 24px;
+    border: 2px solid #dddddd;
+    border-radius: 15px;
+    font-family: 'Apple SD Gothic Neo';
+    background: url('arrow.png') no-repeat 95% 50%;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    font-family: 'Apple SD Gothic Neo';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 18px;
+    /* identical to box height */
+
+    color: #999999;
+  }
+
+  select::-ms-expand {
+    display: none;
+  }
+
+  select option[value=''][disabled] {
+    display: none;
+  }
+
+  input[type='text'] {
+    width: 140px;
+    height: 60px;
+    padding: 21px 25px;
+    background: #ffffff;
+    border: 2px solid #dddddd;
+    border-radius: 15px;
+    font-family: 'Apple SD Gothic Neo';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    /* identical to box height */
+    color: #222222;
+  }
+
+  .line {
+    height: 3px;
+    width: 15px;
+
+    background: #999999;
+
+    margin-left: 10px;
+    margin-right: 10px;
   }
 `
 
-// const ButtonContainer = styled.div`
-//   margin-top: 100px;
-// `
+const ButtonContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 41px;
 
-// const Button = styled.div`
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
+  .text {
+    font-family: 'Apple SD Gothic Neo';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
 
-//   width: 250px;
-//   height: 70px;
-//   background: ${(props) => props.bColor};
-//   border-radius: 15px;
+    color: #222222;
 
-//   font-family: 'Apple SD Gothic Neo';
-//   font-style: normal;
-//   font-weight: 600;
-//   font-size: 17px;
-//   color: #ffffff;
+    margin-bottom: 20px;
+  }
+`
 
-//   cursor: pointer;
-// `
+const Button = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 315px;
+  height: 60px;
+  background: #222222;
+  border-radius: 15px;
+
+  font-family: 'Apple SD Gothic Neo';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 17px;
+  color: #ffffff;
+
+  cursor: pointer;
+`
 
 const myBike = [
   {
@@ -146,9 +286,9 @@ const Market = () => {
   // const [selected, setSelected] = useState([])
   // const navigate = useNavigate()
 
-  const selectMarketBike = (title) => {
-    setSelected(title)
-  }
+  // const selectMarketBike = (title) => {
+  //   setSelected(title)
+  // }
 
   return (
     <Layout title="Market" smallTitle="바이크 중고마켓">
@@ -164,23 +304,143 @@ const Market = () => {
           <SearchForm />
         </SearchContainer>
         <ContentContainer>
-          <FilterContainer></FilterContainer>
-          <MyBikeArea>
-            {myBike.map((item) => (
-              <MyBikeContainer
-                key={item.key}
-                onClick={() => selectMarketBike(item.title)}
+          <FilterContainer>
+            <span className="title">필터</span>
+            <div style={{ marginTop: '5px' }} />
+            <Divider />
+            <InfoWrap>
+              <div className="inputItem">
+                <div className="name">제조사</div>
+                <div>
+                  <select style={{ width: '230px' }}>
+                    <option value="" disabled selected>
+                      선택하세요.
+                    </option>
+                    <option>혼다</option>
+                  </select>
+                </div>
+              </div>
+            </InfoWrap>
+            <InfoWrap>
+              <div className="inputItem">
+                <div className="name">모델명</div>
+                <div>
+                  <select style={{ width: '230px' }}>
+                    <option>선택하세요.</option>
+                    <option>혼다</option>
+                  </select>
+                </div>
+              </div>
+            </InfoWrap>
+            <InfoWrap>
+              <div
+                className="inputItem"
+                style={{ alignItems: 'flex-start', marginTop: '20px' }}
               >
-                <Card
-                  title={item.title}
-                  subTitle={item.subTitle}
-                  cc={item.cc}
-                  km={item.km}
-                  img={item.img}
-                  price={item.price}
-                />
-              </MyBikeContainer>
-            ))}
+                <div className="name">거래지역</div>
+                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                  <select style={{ width: '230px', marginBottom: '15px' }}>
+                    <option>시를 선택하세요.</option>
+                  </select>
+                  <select style={{ width: '230px' }}>
+                    <option>구를 선택하세요.</option>
+                  </select>
+                </div>
+              </div>
+            </InfoWrap>
+            <InfoWrap>
+              <div className="name">주행거리(km)</div>
+              <div
+                className="inputItem"
+                style={{
+                  flexDirection: 'row',
+                  marginTop: '15px',
+                }}
+              >
+                <input type="text" placeholder="최소값" />
+                <span className="line" />
+                <input type="text" placeholder="최대값" />
+              </div>
+            </InfoWrap>
+            <InfoWrap>
+              <div className="name">가격(원)</div>
+              <div
+                className="inputItem"
+                style={{
+                  flexDirection: 'row',
+                  marginTop: '15px',
+                }}
+              >
+                <input type="text" placeholder="최소값" />
+                <span className="line" />
+                <input type="text" placeholder="최대값" />
+              </div>
+            </InfoWrap>
+            <InfoWrap>
+              <div className="name">연식</div>
+              <div
+                className="inputItem"
+                style={{
+                  flexDirection: 'row',
+                  marginTop: '15px',
+                }}
+              >
+                <select style={{ width: '140px' }}>
+                  <option>선택하세요.</option>
+                </select>
+                <span className="line" />
+                <select style={{ width: '140px' }}>
+                  <option>선택하세요.</option>
+                </select>
+              </div>
+            </InfoWrap>
+            <InfoWrap>
+              <div className="name">배기량</div>
+              <div
+                className="inputItem"
+                style={{
+                  flexDirection: 'row',
+                  marginTop: '15px',
+                }}
+              >
+                <select style={{ width: '140px' }}>
+                  <option>선택하세요.</option>
+                </select>
+                <span className="line" />
+                <select style={{ width: '140px' }}>
+                  <option>선택하세요.</option>
+                </select>
+              </div>
+            </InfoWrap>
+            <ButtonContainer>
+              <span className="text">
+                거래완료 안 보기 <input type="checkbox" />
+              </span>
+              <Button>적용하기</Button>
+            </ButtonContainer>
+          </FilterContainer>
+          <MyBikeArea>
+            <SortContainer>
+              <div>최근 등록순 </div>
+              <img src={SortIcon} alt="정렬" />
+            </SortContainer>
+            <ListContainer>
+              {myBike.map((item) => (
+                <CardContainer
+                  key={item.key}
+                  // onClick={() => selectMarketBike(item.title)}
+                >
+                  <Card
+                    title={item.title}
+                    subTitle={item.subTitle}
+                    cc={item.cc}
+                    km={item.km}
+                    img={item.img}
+                    price={item.price}
+                  />
+                </CardContainer>
+              ))}
+            </ListContainer>
           </MyBikeArea>
         </ContentContainer>
       </Wrap>
