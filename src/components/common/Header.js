@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import LOGO from '../../assets/images/pages/main/main_logo.svg'
 
@@ -6,6 +7,10 @@ const Wrap = styled.header`
 
   .menu_item {
     cursor: pointer;
+    a {
+      color: #333333;
+      text-decoration: none;
+    }
   }
 `
 const SubHeader = styled.div`
@@ -56,7 +61,9 @@ const Header = () => {
         <div className="menu_box">
           <div className="menu_item">SELL</div>
           <div className="menu_item">MARKET</div>
-          <div className="menu_item">MY BIKE</div>
+          <div className="menu_item">
+            <Link to="/mybike">MY BIKE</Link>
+          </div>
           <div className="menu_item">MY PAGE</div>
         </div>
       </MainHeader>
