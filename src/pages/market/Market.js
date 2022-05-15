@@ -1,4 +1,4 @@
-// import React, { useState } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import Layout from '../../components/market/Layout'
 import Card from '../../components/market/Card'
@@ -6,6 +6,7 @@ import SearchForm from '../../components/market/SearchForm'
 import LeftArrow from './leftArrowIcon.svg'
 import RightArrow from './rightArrowIcon.svg'
 import SortIcon from './sortIcon.svg'
+import XIcon from './XIcon.svg'
 
 // import { useNavigate } from 'react-router-dom'
 
@@ -43,10 +44,49 @@ const NoticeContainer = styled.div`
   div {
     cursor: pointer;
   }
+
+  div:hover {
+    text-decoration-line: underline;
+  }
 `
 const SearchContainer = styled.div`
   width: 40%;
   margin-bottom: 105px;
+`
+
+const TagContainer = styled.div`
+  display: flex;
+  width: 100%;
+  margin-top: 10px;
+  flex-wrap: wrap;
+  gap: 15px 10px;
+`
+const TagItem = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 9px;
+  height: 35px;
+
+  background: #f1f1f1;
+  border-radius: 10px;
+
+  /* margin-right: 15px; */
+
+  span {
+    font-family: 'Apple SD Gothic Neo';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 13px;
+    /* line-height: 16px; */
+    color: #222222;
+
+    margin-right: 21px;
+  }
+
+  img {
+    cursor: pointer;
+  }
 `
 
 const ContentContainer = styled.div`
@@ -90,6 +130,7 @@ const SortContainer = styled.div`
 
   img {
     margin-left: 5px;
+    cursor: pointer;
   }
 `
 
@@ -283,12 +324,19 @@ const myBike = [
 ]
 
 const Market = () => {
-  // const [selected, setSelected] = useState([])
+  // const filter = [company, modelName]
+  const [company, setCompany] = useState('')
+  const [modelName, setModelName] = useState('')
+
   // const navigate = useNavigate()
 
-  // const selectMarketBike = (title) => {
-  //   setSelected(title)
-  // }
+  const handleSelectCompany = (e) => {
+    setCompany(e.target.value)
+  }
+
+  const handleSelectModelName = (e) => {
+    setModelName(e.target.value)
+  }
 
   return (
     <Layout title="Market" smallTitle="바이크 중고마켓">
@@ -302,6 +350,22 @@ const Market = () => {
         </NoticeContainer>
         <SearchContainer>
           <SearchForm />
+          {/* {filter && ( */}
+          <TagContainer>
+            {company !== '' && (
+              <TagItem onClick={() => setCompany('')}>
+                <span className="text">{company}</span>
+                <img src={XIcon} alt="삭제" />
+              </TagItem>
+            )}
+            {modelName !== '' && (
+              <TagItem onClick={() => setModelName('')}>
+                <span className="text">{modelName}</span>
+                <img src={XIcon} alt="삭제" />
+              </TagItem>
+            )}
+          </TagContainer>
+          {/* )} */}
         </SearchContainer>
         <ContentContainer>
           <FilterContainer>
@@ -312,11 +376,15 @@ const Market = () => {
               <div className="inputItem">
                 <div className="name">제조사</div>
                 <div>
-                  <select style={{ width: '230px' }}>
+                  <select
+                    style={{ width: '230px' }}
+                    onChange={handleSelectCompany}
+                    value={company}
+                  >
                     <option value="" disabled selected>
                       선택하세요.
                     </option>
-                    <option>혼다</option>
+                    <option value="HONDA">혼다</option>
                   </select>
                 </div>
               </div>
@@ -325,9 +393,13 @@ const Market = () => {
               <div className="inputItem">
                 <div className="name">모델명</div>
                 <div>
-                  <select style={{ width: '230px' }}>
+                  <select
+                    style={{ width: '230px' }}
+                    onChange={handleSelectModelName}
+                    value={modelName}
+                  >
                     <option>선택하세요.</option>
-                    <option>혼다</option>
+                    <option value="SUPER CUB">SUPER CUB</option>
                   </select>
                 </div>
               </div>
