@@ -6,7 +6,7 @@ const RouteList = () => {
   return (
     <Routes>
       <Route path="/" element={<MainPage />} />
-      <Route path="/mybike" element={<MyBike />} />
+      <Route path="/mybike" element={<MyBike myBikeList={undefined} />} />
     </Routes>
   )
 }
