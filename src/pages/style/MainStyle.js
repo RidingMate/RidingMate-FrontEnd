@@ -37,19 +37,19 @@ export const TextBox = styled.div`
   }
 
   .text_01 {
-    font-size: 20px;
-    line-height: 20px;
+    font-size: 18px;
+    line-height: 18px;
   }
   .text_02 {
-    font-size: 30px;
-    line-height: 27px;
-    margin-top: 10px;
+    font-size: 25px;
+    line-height: 30px;
+    margin-top: 8px;
   }
   .text_03 {
-    font-size: 55px;
+    font-size: 36px;
     font-weight: 700;
     line-height: 48px;
-    margin-top: 20px;
+    margin-top: 8px;
   }
   .text_04_wrap {
     display: flex;
@@ -62,8 +62,9 @@ export const TextBox = styled.div`
     line-height: 40px;
   }
   .text_04_1 {
-    font-size: 30px;
-    line-height: 27px;
+    font-size: 25px;
+    line-height: 30px;
+    padding: 0 0 4px 2px;
   }
   .text_05 {
     font-size: 30px;
@@ -71,16 +72,16 @@ export const TextBox = styled.div`
     margin-top: 21px;
   }
   .btn {
-    width: 250px;
-    height: 70px;
-    font-size: 20px;
+    width: 180px;
+    height: 60px;
+    font-size: 15px;
     font-weight: 700;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 10px;
     border: 2px solid #ffffff;
-    margin-top: 50px;
+    margin-top: 20px;
     cursor: pointer;
 
     /* :hover {
@@ -90,29 +91,32 @@ export const TextBox = styled.div`
 `
 export const Market = styled.div`
   width: 100%;
-  max-width: 1300px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding-top: 110px;
+  padding-top: 60px;
   /* border: 1px solid red; */
 `
 export const TitleBox = styled.div`
   width: 100%;
-  padding: 0 46px;
+  padding: 0 30px;
   margin: 0 auto;
 
   .title_market {
     color: #222222;
-    font-size: 30px;
+    font-size: 20px;
+    font-weight: 900;
+    line-height: 24px;
   }
   .latest_content {
     color: #777777;
-    font-size: 18px;
+    font-size: 13px;
     font-weight: 600;
+    line-height: 15.6px;
   }
 `
 export const CardBoxWrap = styled.div`
-  padding: 0 28px;
-  margin: 30px auto 0;
+  padding: 0 20px;
+  margin: 10px auto 0;
 `
 export const CardBox = styled.div`
   width: 100%;
@@ -120,16 +124,16 @@ export const CardBox = styled.div`
   position: relative;
   display: grid;
   grid-template-columns: repeat(4, minmax(25%, 306px));
-  grid-template-rows: repeat(2, minmax(auto, 490px));
+  grid-template-rows: repeat(2, minmax(auto, 440px));
   overflow: hidden;
 `
 export const More = styled.div`
-  width: 180px;
-  height: 60px;
+  width: 130px;
+  height: 50px;
   color: #777777;
-  font-size: 18px;
+  font-size: 13px;
   font-weight: 700;
-  line-height: 24px;
+  line-height: 15.6px;
   border-radius: 15px;
   border: 2px solid #dddddd;
   display: flex;
@@ -142,11 +146,11 @@ export const Footer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 50px 60px 0;
+  padding: 25px 60px 0;
 
   .info_box {
     width: 100%;
-    height: 120px;
+    height: 95px;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
@@ -160,24 +164,24 @@ export const Footer = styled.div`
     align-items: flex-start;
 
     .title {
-      font-size: 16px;
+      font-size: 13px;
       font-weight: 600;
-      line-height: 17px;
-      margin-bottom: 16px;
+      line-height: 15.6px;
+      margin-bottom: 15px;
     }
     .item {
-      font-size: 13px;
+      font-size: 11px;
       font-weight: 400;
-      line-height: 14px;
-      margin-bottom: 8px;
+      line-height: 13.2px;
+      margin-bottom: 10px;
     }
   }
   .name_c {
-    font-size: 13px;
+    font-size: 11px;
     font-weight: 400;
-    line-height: 14px;
+    line-height: 13.2px;
     align-self: flex-end;
-    margin: 18px 0 26px;
+    margin: 13px 0 14px;
     /* margin: 18px 0 26px auto; */
   }
 `

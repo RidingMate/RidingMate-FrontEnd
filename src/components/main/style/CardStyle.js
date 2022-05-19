@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const Card = styled.div`
   margin: 20px 0;
-  padding: 0 18px;
+  padding: 0 10px;
   transition: all 0.4s ease-in-out;
   position: relative;
   display: inline-block;
@@ -27,8 +27,8 @@ export const Card = styled.div`
   .product {
     overflow: hidden;
     position: relative;
-    padding-top: 108%;
-    border-radius: 14px;
+    padding-top: 102%;
+    border-radius: 15px;
     background-color: #f4f4f4;
   }
   .picture {
@@ -56,12 +56,6 @@ export const Card = styled.div`
   .info_box {
     padding-top: 9px;
   }
-  .desc {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 4px;
-  }
   .bike {
     color: #222222;
     font-size: 0;
@@ -79,18 +73,25 @@ export const Card = styled.div`
   .bike .name {
     display: inline-block;
     vertical-align: top;
-    line-height: 24.7px;
-    font-size: 21px;
+    font-size: 15px;
     font-weight: 500;
+    line-height: 18px;
   }
   .bike .model {
     display: inline-block;
     vertical-align: top;
-    line-height: 20.4px;
-    font-size: 17px;
+    font-size: 13px;
     font-weight: 500;
+    line-height: 15.6px;
   }
-  .cc, .km {
+  .desc {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 4px;
+  }
+  .cc,
+  .km {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -98,16 +99,21 @@ export const Card = styled.div`
     font-size: 0;
     line-height: 0;
   }
-  .km .km_num, .km_km, .cc .cc_num, .cc_cc, .slash {
-    line-height: 17px;
+  .km .km_num,
+  .km_km,
+  .cc .cc_num,
+  .cc_cc,
+  .slash {
     color: #777777;
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 500;
+    line-height: 15.6px;
   }
   .price {
-    padding-top: 9px;
+    /* padding-top: 2px; */
   }
   .price .amount {
+    color: #222222;
     font-size: 0;
     line-height: 0;
     display: flex;
@@ -115,12 +121,12 @@ export const Card = styled.div`
     align-items: center;
     gap: 6px;
   }
-  .price .num, .won {
+  .price .num,
+  .won {
     display: inline-block;
     vertical-align: top;
-    line-height: 23px;
-    font-size: 23px;
+    font-size: 20px;
     font-weight: 700;
-    /* letter-spacing: -0.04px; */
+    line-height: 24px;
   }
 `

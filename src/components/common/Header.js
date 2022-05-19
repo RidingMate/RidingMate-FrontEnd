@@ -10,31 +10,33 @@ const Wrap = styled.header`
 `
 const SubHeader = styled.div`
   width: 100%;
-  height: 50px;
+  height: 30px;
   color: #777777;
-  font-size: 17px;
-  font-weight: 700;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 15.6px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 70px;
-  padding-right: 76px;
+  gap: 40px;
+  padding-right: 60px;
   border-bottom: 1px solid #dddddd;
 `
 const MainHeader = styled.div`
   width: 100%;
-  height: 125px;
+  height: 70px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 76px;
+  padding: 0 60px;
 
   .menu_box {
     color: #333333;
-    font-size: 22px;
+    font-size: 15px;
     font-weight: 700;
+    line-height: 18px;
     display: flex;
-    gap: 90px;
+    gap: 60px;
   }
 `
 
@@ -50,8 +52,8 @@ const Header = () => {
           className="main_logo"
           alt="main_logo"
           src={LOGO}
-          width={100}
-          height={65}
+          width={60}
+          height={39}
         />
         <div className="menu_box">
           <div className="menu_item">SELL</div>

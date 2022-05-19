@@ -7,8 +7,8 @@ const Main = () => {
   return (
     <S.Wrap>
       <S.Banner>
-        <S.Image img={banner_img} height={'910px'}></S.Image>
-        <S.TextBox bottom={'100px'}>
+        <S.Image img={banner_img} height={'700px'}></S.Image>
+        <S.TextBox bottom={'90px'}>
           <div className="text_01">빠르고 편리한</div>
           <div className="text_02">오토바이 관리 및 중고거래 플랫폼</div>
           <div className="text_03">RIDING MATE CREW</div>
@@ -39,10 +39,12 @@ const Main = () => {
         <S.Image img={banner_footer_img} height={'600px'}></S.Image>
         <S.TextBox top={'64px'}>
           <div className="text_04_wrap">
-            <div className="text_04">RIDING MATE CREW</div>
+            <div className="text_03">RIDING MATE CREW</div>
             <span className="text_04_1">와 함께</span>
           </div>
-          <div className="text_05">쉽게 바이크를 관리하고 정보를 공유하세요.</div>
+          <div className="text_02">
+            쉽게 바이크를 관리하고 정보를 공유하세요.
+          </div>
           <div className="btn">주유 / 정비기록 추가하기</div>
         </S.TextBox>
       </S.Banner>
