@@ -5,7 +5,6 @@ const Container = styled.div`
   width: 100%;
   border: 1px solid red;
 `
-
 const MarketDetail = () => {
   return <Container></Container>
 }
