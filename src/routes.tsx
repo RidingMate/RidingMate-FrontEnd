@@ -6,6 +6,7 @@ import SellPage from './pages/sell/Sell'
 import SellMyBikePage from './pages/sell/Sell-MyBike'
 
 import SellMyBikeWritePage from './pages/sell/Sell-MyBike-Write'
+import MarketPage from './pages/market/Market'
 
 const RouteList = () => {
   return (
@@ -17,6 +18,7 @@ const RouteList = () => {
       <Route path="/sell" element={<SellPage />} />
       <Route path="/sell/my-bike" element={<SellMyBikePage />} />
       <Route path="/sell/my-bike/write" element={<SellMyBikeWritePage />} />
+      <Route path="/market" element={<MarketPage />} />
     </Routes>
   )
 }
