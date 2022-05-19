@@ -7,6 +7,7 @@ const RouteList = () => {
     <Routes>
       <Route path="/" element={<MainPage />} />
       <Route path="/mybike" element={<MyBike myBikeList={undefined} />} />
+      <Route path="*" element={<div>PAGE NOT FOUND</div>} />
     </Routes>
   )
 }

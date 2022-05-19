@@ -34,6 +34,9 @@ const MainHeader = styled.div`
   align-items: center;
   padding: 0 76px;
 
+  // width가 작아지면 가운데 정렬이 뭉개지는 현상이 발생해서
+  // 일정 width 이하로 내려가면 반응형으로 숨기거나 navbar 작업
+  // 추후 수정해야 할 것 같습니다!
   .menu_box {
     color: #333333;
     font-size: 22px;

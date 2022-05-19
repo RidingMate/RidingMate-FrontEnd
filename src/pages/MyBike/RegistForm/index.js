@@ -1,3 +1,3 @@
-import BikeRegistForm from './RegistForm'
+import RegistForm from './RegistForm'
 
-export default BikeRegistForm
+export default RegistForm

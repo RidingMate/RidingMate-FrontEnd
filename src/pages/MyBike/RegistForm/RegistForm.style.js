@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import dropdownImg from '../../../assets/images/pages/MyBike/dropdown.svg'
 
 const Wrap = styled.div`
   width: 900px;
@@ -37,19 +36,11 @@ const Grid = styled.div`
 
 const Category = styled.div`
   font-size: 16px;
+  text-align: center;
   justify-self: end;
-`
-
-const Input = styled.input`
-  width: ${({ width }) => width || '400px'};
-  height: ${({ height }) => height || '60px'};
-  left: 832px;
-  top: 739px;
-  padding-left: 25px;
-
-  background: #ffffff;
-  border: 2px solid #dddddd;
-  border-radius: 15px;
+  & :nth-child(2) {
+    font-size: 12px;
+  }
 `
 
 const UploadBox = styled.label`
@@ -68,21 +59,6 @@ const UploadBox = styled.label`
   color: #999999;
 
   cursor: pointer;
-`
-
-const Select = styled.select`
-  width: ${({ width }) => width || '400px'};
-  height: 60px;
-  padding: 0 23px;
-
-  appearance: none;
-
-  background: url(${dropdownImg}) no-repeat 95% 50%;
-  background-color: #ffffff;
-  border: 2px solid #dddddd;
-  border-radius: 15px;
-
-  box-sizing: border-box;
 `
 
 const CheckBox = styled.input`
@@ -189,9 +165,7 @@ export {
   Form,
   Grid,
   Category,
-  Input,
   UploadBox,
-  Select,
   CheckBox,
   RegistSection,
   Div,
