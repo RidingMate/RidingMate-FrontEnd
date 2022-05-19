@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import LOGO from '../../assets/images/pages/main/main_logo.svg'
 
@@ -6,6 +7,10 @@ const Wrap = styled.header`
 
   .menu_item {
     cursor: pointer;
+    a {
+      color: #333333;
+      text-decoration: none;
+    }
   }
 `
 const SubHeader = styled.div`
@@ -30,6 +35,9 @@ const MainHeader = styled.div`
   align-items: center;
   padding: 0 60px;
 
+  // width가 작아지면 가운데 정렬이 뭉개지는 현상이 발생해서
+  // 일정 width 이하로 내려가면 반응형으로 숨기거나 navbar 작업
+  // 추후 수정해야 할 것 같습니다!
   .menu_box {
     color: #333333;
     font-size: 15px;
@@ -58,7 +66,9 @@ const Header = () => {
         <div className="menu_box">
           <div className="menu_item">SELL</div>
           <div className="menu_item">MARKET</div>
-          <div className="menu_item">MY BIKE</div>
+          <div className="menu_item">
+            <Link to="/mybike">MY BIKE</Link>
+          </div>
           <div className="menu_item">MY PAGE</div>
         </div>
       </MainHeader>

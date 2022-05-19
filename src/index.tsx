@@ -3,6 +3,7 @@ import { Suspense } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import CssBaseline from '@mui/material/CssBaseline'
+import './reset.css'
 // import { ReactQueryDevtools } from 'react-query/devtools'
 // import { QueryClient, QueryClientProvider } from 'react-query'
 
