@@ -17,7 +17,7 @@ const Title = styled.div`
     text-align: center;
   }
   p {
-    font-sizie: 15px;
+    font-size: 15px;
     text-align: center;
   }
 `
