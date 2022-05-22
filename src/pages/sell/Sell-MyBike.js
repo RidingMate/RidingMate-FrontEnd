@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import Layout from '../../components/sell/Layout'
+import Procedure from '../../components/sell/Procedure'
 import Card from '../../components/sell/Card'
 import { useNavigate } from 'react-router-dom'
 
@@ -21,12 +22,6 @@ const Title = styled.div`
 
   margin-top: 45px;
   margin-bottom: 49px;
-`
-
-const SellProcedure = styled.div`
-  width: 248px;
-  height: 17px;
-  background-color: black;
 `
 
 const MyBikeArea = styled.div`
@@ -90,7 +85,8 @@ const Sell = () => {
   return (
     <Layout title="SELL" smallTitle="판매하기">
       <Wrap>
-        <SellProcedure />
+        <Procedure name="바이크 선택" />
+
         <Title>판매할 바이크를 선택하세요.</Title>
         <MyBikeArea>
           {myBike.map((item) => (

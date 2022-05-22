@@ -4,21 +4,21 @@ const CopyPlugin = require('copy-webpack-plugin')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const { TsconfigPathsPlugin } = require('tsconfig-paths-webpack-plugin')
 
-const mode = process.env.NODE_ENV || 'development';
+const mode = process.env.NODE_ENV || 'development'
 
 module.exports = {
   mode,
   entry: path.resolve(__dirname, '..', './src/index.tsx'),
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
-    plugins: [new TsconfigPathsPlugin()]
+    plugins: [new TsconfigPathsPlugin()],
   },
-  devtool: "source-map",
+  devtool: 'source-map',
   module: {
     rules: [
       {
         test: /\.(ts|tsx)$/,
-        loader: "ts-loader",
+        loader: 'ts-loader',
         options: {
           transpileOnly: true,
           experimentalWatchApi: true,
@@ -51,6 +51,7 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, '..', './build'),
+    publicPath: '/',
   },
   optimization: {
     removeAvailableModules: false,
@@ -72,4 +73,4 @@ module.exports = {
           : false,
     }),
   ],
-};
+}

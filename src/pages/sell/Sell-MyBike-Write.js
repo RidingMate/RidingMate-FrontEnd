@@ -1,6 +1,7 @@
 // import React, { useState } from 'react'
 import styled from 'styled-components'
 import Layout from '../../components/sell/Layout'
+import Procedure from '../../components/sell/Procedure'
 import { useNavigate } from 'react-router-dom'
 // import arrow from './arrow.png'
 import camIcon from './camIcon.png'
@@ -12,12 +13,6 @@ const Wrap = styled.div`
 
   margin-top: 22px;
   margin-bottom: 30px;
-`
-
-const SellProcedure = styled.div`
-  width: 248px;
-  height: 17px;
-  background-color: black;
 `
 
 const InfoContainer = styled.div`
@@ -272,8 +267,8 @@ const Sell = () => {
 
   return (
     <Layout title="SELL" smallTitle="판매하기">
-      <SellProcedure />
       <Wrap>
+        <Procedure name="바이크/거래 정보 입력" />
         <InfoContainer>
           <span className="infoTitle">바이크 정보</span>
           <Divider />
