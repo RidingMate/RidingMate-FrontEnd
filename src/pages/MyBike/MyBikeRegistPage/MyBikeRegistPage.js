@@ -1,11 +1,14 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import * as S from './MyBikeRegistPage.style'
-import RegistButtonImg from '../../../assets/images/pages/MyBike/regist_button_img.svg'
-import closeImg from '../../../assets/images/pages/MyBike/close.svg'
-import Button from '../../../elements/Button'
-import Input from '../../../elements/Input'
-import Select from '../../../elements/Select'
+
+import regist_button_bike_img from 'src/assets/images/pages/mybike/regist/regist_button_bike_img.svg'
+import regist_button_added_img_close from 'src/assets/images/pages/mybike/regist/regist_button_added_img_close.svg'
+
+import Button from 'src/elements/Button'
+import Input from 'src/elements/Input'
+import Select from 'src/elements/Select'
+import PageHeader from 'src/elements/PageHeader'
 
 /* years와 months 리스트만 뽑기 위한 함수*/
 const yearList = () => {
@@ -59,8 +62,9 @@ const MyBikeRegistPage = () => {
 
   return (
     <S.Wrap>
-      <h2>새 바이크 등록하기</h2>
+      <PageHeader main_title={'MY BIKE'} sub_title={'내 바이크'} />
       <S.Form onSubmit={handleSubmit}>
+        <S.Head>바이크 정보 수정하기</S.Head>
         <S.Grid>
           <S.Category>
             <div>이미지({imgSrc ? '1' : '0'}/1)</div>
@@ -78,7 +82,7 @@ const MyBikeRegistPage = () => {
             {imgSrc ? (
               <S.Thumbnail src={imgSrc} alt="bike_image">
                 <S.Btn
-                  src={closeImg}
+                  src={regist_button_added_img_close}
                   onClick={handleDelete}
                   color={'#FFFFFF'}
                   width={'15px'}
@@ -87,7 +91,11 @@ const MyBikeRegistPage = () => {
               </S.Thumbnail>
             ) : (
               <S.UploadBox htmlFor="uploader">
-                <S.Image src={RegistButtonImg} width={'40px'} height={'36px'} />
+                <S.Image
+                  src={regist_button_bike_img}
+                  width={'40px'}
+                  height={'36px'}
+                />
                 사진추가하기
               </S.UploadBox>
             )}
