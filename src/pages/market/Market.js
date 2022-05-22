@@ -122,8 +122,6 @@ const SortContainer = styled.div`
   font-weight: 600;
   font-size: 15px;
   line-height: 18px;
-  /* identical to box height */
-
   color: #222222;
 
   margin-bottom: 20px;

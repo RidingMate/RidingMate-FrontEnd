@@ -12,7 +12,7 @@ const Wrap = styled.div`
   flex-direction: column;
 
   /* margin-top: 22px; */
-  margin-bottom: 30px;
+  padding-bottom: 110px;
 `
 
 const InfoContainer = styled.div`
@@ -24,10 +24,11 @@ const InfoContainer = styled.div`
     font-family: 'Apple SD Gothic Neo';
     font-style: normal;
     font-weight: 600;
-    font-size: 25px;
+    font-size: 20px;
+    line-height: 24px;
     color: #000000;
 
-    margin-bottom: 15px;
+    margin-bottom: 10px;
   }
 `
 
@@ -57,17 +58,17 @@ const InfoWrap = styled.div`
     font-family: 'Apple SD Gothic Neo';
     font-style: normal;
     font-weight: 700;
-    font-size: 16px;
-
+    font-size: 15px;
+    line-height: 18px;
     color: #555555;
 
-    margin-right: 25px;
+    margin-right: 31px;
   }
 
   select {
     width: 400px;
     height: 60px;
-    padding: 20px 24px;
+    padding: 21px 25px;
     border: 2px solid #dddddd;
     border-radius: 15px;
     font-family: 'Apple SD Gothic Neo';
@@ -79,7 +80,7 @@ const InfoWrap = styled.div`
     font-family: 'Apple SD Gothic Neo';
     font-style: normal;
     font-weight: 600;
-    font-size: 15px;
+    font-size: 14px;
   }
 
   select::-ms-expand {
@@ -98,9 +99,7 @@ const InfoWrap = styled.div`
     font-family: 'Apple SD Gothic Neo';
     font-style: normal;
     font-weight: 600;
-    font-size: 15px;
-    /* identical to box height */
-
+    font-size: 14px;
     color: #222222;
   }
 
@@ -124,11 +123,28 @@ const InfoWrap = styled.div`
     font-style: normal;
     font-weight: 600;
     font-size: 15px;
-
     color: #555555;
 
     margin-left: 15px;
     margin-right: 14px;
+  }
+
+  .guideText {
+    font-family: 'Apple SD Gothic Neo';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 11px;
+    line-height: 13px;
+    color: #555555;
+
+    margin-left: 20px;
+    margin-top: 10px;
+
+    .highlight {
+      cursor: pointer;
+      margin-left: 2px;
+      text-decoration: underline;
+    }
   }
 `
 
@@ -249,7 +265,7 @@ const Button = styled.div`
   justify-content: center;
 
   width: 250px;
-  height: 70px;
+  height: 60px;
   background: ${(props) => props.bColor};
   border-radius: 15px;
 
@@ -283,10 +299,15 @@ const Sell = () => {
           <InfoWrap>
             <div className="inputItem">
               <div className="name">모델명</div>
-              <select>
-                <option>Super Cub</option>
-              </select>
-              {/* <div>찾으시는 제조사/모델이 없나요? 정보추가 요청하기</div> */}
+              <div>
+                <select>
+                  <option>Super Cub</option>
+                </select>
+                <div className="guideText">
+                  찾으시는 제조사/모델이 없나요?
+                  <span className="highlight">정보추가 요청하기</span>
+                </div>
+              </div>
             </div>
           </InfoWrap>
           <InfoWrap>

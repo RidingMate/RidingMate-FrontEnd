@@ -8,7 +8,7 @@ const Wrap = styled.div`
   flex-direction: column;
   align-items: center;
 
-  margin-top: 238px;
+  margin-top: 230px;
 `
 
 const Sell = () => {

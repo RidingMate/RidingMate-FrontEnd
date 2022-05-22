@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import myBike from './myBike'
 import styled from 'styled-components'
 import Layout from '../../components/sell/Layout'
 import Procedure from '../../components/sell/Procedure'
@@ -10,28 +11,33 @@ const Wrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 120px;
 `
 
 const Title = styled.div`
   font-family: 'Apple SD Gothic Neo';
   font-style: normal;
   font-weight: 400;
-  font-size: 20px;
+  font-size: 15px;
+  line-height: 18px;
+  color: #333333;
 
-  margin-top: 45px;
-  margin-bottom: 49px;
-`
-
-const MyBikeArea = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+  margin-top: 50px;
+  margin-bottom: 55px;
 `
 
 const MyBikeContainer = styled.div`
-  :not(:last-of-type) {
+  display: grid;
+  /* grid-template-columns: 1fr 1fr 1fr 1fr; */
+  grid-template-columns: ${(props) => props.gridColumns};
+  row-gap: 93.3px;
+  column-gap: 60px;
+`
+
+const MyBikeItem = styled.div`
+  /* :not(:last-of-type) {
     margin-right: 80px;
-  }
+  } */
 `
 
 const ButtonContainer = styled.div`
@@ -44,7 +50,7 @@ const Button = styled.div`
   justify-content: center;
 
   width: 250px;
-  height: 70px;
+  height: 60px;
   background: ${(props) => props.bColor};
   border-radius: 15px;
 
@@ -56,21 +62,6 @@ const Button = styled.div`
 
   cursor: pointer;
 `
-
-const myBike = [
-  {
-    key: 'sss1',
-    title: '내 바이크1',
-    subTitle: '혼다 Super Cub',
-    img: 'https://velog.velcdn.com/images%2Freemrev21%2Fpost%2F3a760ad5-c0e4-457e-8f15-5c7d9f986afc%2F72df9a1e-1b6c-4fff-aed5-0b21a9b685f0.jpg',
-  },
-  {
-    key: 'sss2',
-    title: '내 바이크2',
-    subTitle: '혼다 Super Cub',
-    img: 'https://velog.velcdn.com/images%2Freemrev21%2Fpost%2F3a760ad5-c0e4-457e-8f15-5c7d9f986afc%2F72df9a1e-1b6c-4fff-aed5-0b21a9b685f0.jpg',
-  },
-]
 
 const Sell = () => {
   const [selected, setSelected] = useState([])
@@ -84,11 +75,14 @@ const Sell = () => {
     <Layout title="SELL" smallTitle="판매하기">
       <Wrap>
         <Procedure name="바이크 선택" />
-
         <Title>판매할 바이크를 선택하세요.</Title>
-        <MyBikeArea>
+        <MyBikeContainer
+          gridColumns={
+            myBike.length < 4 ? '1fr '.repeat(myBike.length) : '1fr 1fr 1fr 1fr'
+          }
+        >
           {myBike.map((item) => (
-            <MyBikeContainer
+            <MyBikeItem
               key={item.key}
               onClick={() => selectSellBike(item.title)}
             >
@@ -98,9 +92,9 @@ const Sell = () => {
                 img={item.img}
                 selected={selected}
               />
-            </MyBikeContainer>
+            </MyBikeItem>
           ))}
-        </MyBikeArea>
+        </MyBikeContainer>
         <ButtonContainer>
           <Button
             bColor={selected.length !== 0 ? '#222222' : '#dddddd'}

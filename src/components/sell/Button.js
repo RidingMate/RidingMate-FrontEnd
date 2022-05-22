@@ -5,7 +5,7 @@ const Wrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 500px;
+  width: 400px;
   height: 70px;
   background: #222222;
   border-radius: 15px;
@@ -15,7 +15,10 @@ const Wrap = styled.div`
     font-family: 'Apple SD Gothic Neo';
     font-style: normal;
     font-weight: 700;
-    font-size: 17px;
+    font-size: 15px;
+    line-height: 18px;
+    /* identical to box height */
+
     color: #ffffff;
   }
 `
