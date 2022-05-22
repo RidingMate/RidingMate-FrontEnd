@@ -53,7 +53,7 @@ const SellProcedure = styled.div`
       color: #999999;
 
       :not(:last-of-type) {
-        margin-right: 15px;
+        margin-right: 13px;
       }
 
       &.selected {

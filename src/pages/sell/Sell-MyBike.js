@@ -10,8 +10,6 @@ const Wrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  margin-top: 22px;
 `
 
 const Title = styled.div`

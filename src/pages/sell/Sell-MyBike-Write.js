@@ -11,7 +11,7 @@ const Wrap = styled.div`
   display: flex;
   flex-direction: column;
 
-  margin-top: 22px;
+  /* margin-top: 22px; */
   margin-bottom: 30px;
 `
 
