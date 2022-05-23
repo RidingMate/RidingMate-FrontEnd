@@ -7,8 +7,8 @@ const Wrap = styled.div`
   cursor: pointer;
 
   .img {
-    width: 230px;
-    height: 250px;
+    width: 200px;
+    height: 210px;
     border-radius: 15px;
     object-fit: cover;
   }
@@ -17,48 +17,46 @@ const Wrap = styled.div`
     font-family: 'Apple SD Gothic Neo';
     font-style: normal;
     font-weight: 500;
-    font-size: 20px;
-    line-height: 24px;
+    font-size: 13px;
+    line-height: 16px;
     color: #222222;
 
-    /* margin-top: 19px; */
+    /* margin-top: 10px; */
   }
 
   .subTitle {
     font-family: 'Apple SD Gothic Neo';
     font-style: normal;
     font-weight: 500;
-    font-size: 16px;
-    line-height: 19px;
-
+    font-size: 11px;
+    line-height: 13px;
     color: #222222;
-    margin-top: 5px;
+
+    margin-top: 3px;
   }
 
   .info {
     font-family: 'Apple SD Gothic Neo';
     font-style: normal;
     font-weight: 600;
-    font-size: 14px;
-    line-height: 17px;
+    font-size: 10px;
+    line-height: 12px;
     text-align: right;
-
     color: #777777;
-    margin-top: 20px;
+
+    margin-top: 10px;
   }
 
   .price {
     font-family: 'Apple SD Gothic Neo';
     font-style: normal;
     font-weight: 700;
-    font-size: 20px;
-    line-height: 24px;
+    font-size: 15px;
+    line-height: 18px;
     text-align: right;
-
-    /* identical to box height */
-
     color: #222222;
-    margin-top: 5px;
+
+    margin-top: 3px;
   }
 `
 const Card = (props) => {

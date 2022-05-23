@@ -7,7 +7,8 @@ import LeftArrow from './leftArrowIcon.svg'
 import RightArrow from './rightArrowIcon.svg'
 import SortIcon from './sortIcon.svg'
 import XIcon from './XIcon.svg'
-
+import selectIcon from './selectIcon.svg'
+import myBike from './myBike'
 // import { useNavigate } from 'react-router-dom'
 
 const Wrap = styled.div`
@@ -90,24 +91,23 @@ const TagItem = styled.div`
 `
 
 const ContentContainer = styled.div`
-  width: 70%;
+  width: 100%;
   display: flex;
+  align-items: flex-start;
+  justify-content: center;
 `
 
 const FilterContainer = styled.div`
-  /* width: 315px; */
-  /* height: 100vh; */
-  /* border: 1px solid black; */
-  margin-right: 45px;
+  width: 265px;
+  margin-right: 30px;
   margin-bottom: 138px;
 
   .title {
     font-family: 'Apple SD Gothic Neo';
     font-style: normal;
     font-weight: 700;
-    font-size: 25px;
-    /* line-height: 30px; */
-
+    font-size: 20px;
+    line-height: 24px;
     color: #222222;
   }
 `
@@ -126,10 +126,37 @@ const SortContainer = styled.div`
 
   margin-bottom: 20px;
 
-  img {
-    margin-left: 5px;
+  select {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 88px;
+    height: 17px;
+
+    border: none;
+    outline: none;
+
+    background: url(${SortIcon}) no-repeat 95% 10%;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    font-family: 'Apple SD Gothic Neo';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 13px;
+
+    line-height: 16px;
+    color: #222222;
+
     cursor: pointer;
   }
+
+  /* img {
+    margin-left: 5px;
+    cursor: pointer;
+  } */
 `
 
 const MyBikeArea = styled.div`
@@ -140,8 +167,8 @@ const MyBikeArea = styled.div`
 const ListContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  row-gap: 40px;
-  column-gap: 60px;
+  row-gap: 50px;
+  column-gap: 15px;
 `
 
 const CardContainer = styled.div`
@@ -160,6 +187,7 @@ const InfoWrap = styled.div`
   margin-top: 15px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   /* align-items: center; */
 
   .inputItem {
@@ -175,28 +203,27 @@ const InfoWrap = styled.div`
     font-family: 'Apple SD Gothic Neo';
     font-style: normal;
     font-weight: 700;
-    font-size: 16px;
+    font-size: 14px;
+    line-height: 17px;
     color: #555555;
-    margin-right: 25px;
   }
 
   select {
-    width: 400px;
+    width: 180px;
     height: 60px;
-    padding: 20px 24px;
+    padding: 21px 15px;
     border: 2px solid #dddddd;
     border-radius: 15px;
     font-family: 'Apple SD Gothic Neo';
-    background: url('arrow.png') no-repeat 95% 50%;
+    background: url(${selectIcon}) no-repeat 90% 50%;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
     font-family: 'Apple SD Gothic Neo';
     font-style: normal;
     font-weight: 500;
-    font-size: 15px;
-    line-height: 18px;
-    /* identical to box height */
+    font-size: 13px;
+    line-height: 16px;
 
     color: #999999;
   }
@@ -210,17 +237,18 @@ const InfoWrap = styled.div`
   }
 
   input[type='text'] {
-    width: 140px;
+    width: 110px;
     height: 60px;
-    padding: 21px 25px;
+    padding: 21px 15px;
     background: #ffffff;
     border: 2px solid #dddddd;
     border-radius: 15px;
     font-family: 'Apple SD Gothic Neo';
     font-style: normal;
-    font-weight: 600;
-    font-size: 15px;
-    /* identical to box height */
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 16px;
+
     color: #222222;
   }
 
@@ -230,8 +258,8 @@ const InfoWrap = styled.div`
 
     background: #999999;
 
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 15px;
+    margin-right: 15px;
   }
 `
 
@@ -259,7 +287,7 @@ const Button = styled.div`
   align-items: center;
   justify-content: center;
 
-  width: 315px;
+  width: 265px;
   height: 60px;
   background: #222222;
   border-radius: 15px;
@@ -267,59 +295,12 @@ const Button = styled.div`
   font-family: 'Apple SD Gothic Neo';
   font-style: normal;
   font-weight: 700;
-  font-size: 17px;
+  font-size: 15px;
+  line-height: 18px;
   color: #ffffff;
 
   cursor: pointer;
 `
-
-const myBike = [
-  {
-    key: 'sss1',
-    title: '판매글 제목입니다. 1',
-    cc: '000',
-    km: '00000',
-    subTitle: '혼다 Super Cub',
-    img: 'https://velog.velcdn.com/images%2Freemrev21%2Fpost%2F3a760ad5-c0e4-457e-8f15-5c7d9f986afc%2F72df9a1e-1b6c-4fff-aed5-0b21a9b685f0.jpg',
-    price: 3150000,
-  },
-  {
-    key: 'sss2',
-    title: '판매글 제목입니다. 2',
-    cc: '000',
-    km: '00000',
-    subTitle: '혼다 Super Cub',
-    img: 'https://velog.velcdn.com/images%2Freemrev21%2Fpost%2F3a760ad5-c0e4-457e-8f15-5c7d9f986afc%2F72df9a1e-1b6c-4fff-aed5-0b21a9b685f0.jpg',
-    price: 2520000,
-  },
-  {
-    key: 'sss3',
-    title: '판매글 제목입니다. 3',
-    cc: '000',
-    km: '00000',
-    subTitle: '혼다 Super Cub',
-    img: 'https://velog.velcdn.com/images%2Freemrev21%2Fpost%2F3a760ad5-c0e4-457e-8f15-5c7d9f986afc%2F72df9a1e-1b6c-4fff-aed5-0b21a9b685f0.jpg',
-    price: 20600000,
-  },
-  {
-    key: 'sss4',
-    title: '판매글 제목입니다. 4',
-    cc: '000',
-    km: '00000',
-    subTitle: '혼다 Super Cub',
-    img: 'https://velog.velcdn.com/images%2Freemrev21%2Fpost%2F3a760ad5-c0e4-457e-8f15-5c7d9f986afc%2F72df9a1e-1b6c-4fff-aed5-0b21a9b685f0.jpg',
-    price: 315000000,
-  },
-  {
-    key: 'sss5',
-    title: '판매글 제목입니다. 5',
-    cc: '000',
-    km: '000000',
-    subTitle: '혼다 Super Cub',
-    img: 'https://velog.velcdn.com/images%2Freemrev21%2Fpost%2F3a760ad5-c0e4-457e-8f15-5c7d9f986afc%2F72df9a1e-1b6c-4fff-aed5-0b21a9b685f0.jpg',
-    price: 315000000,
-  },
-]
 
 const Market = () => {
   // const filter = [company, modelName]
@@ -375,7 +356,7 @@ const Market = () => {
                 <div className="name">제조사</div>
                 <div>
                   <select
-                    style={{ width: '230px' }}
+                    style={{ width: '180px' }}
                     onChange={handleSelectCompany}
                     value={company}
                   >
@@ -392,7 +373,7 @@ const Market = () => {
                 <div className="name">모델명</div>
                 <div>
                   <select
-                    style={{ width: '230px' }}
+                    style={{ width: '180px' }}
                     onChange={handleSelectModelName}
                     value={modelName}
                   >
@@ -403,17 +384,31 @@ const Market = () => {
               </div>
             </InfoWrap>
             <InfoWrap>
-              <div
-                className="inputItem"
-                style={{ alignItems: 'flex-start', marginTop: '20px' }}
-              >
+              <div className="inputItem">
                 <div className="name">거래지역</div>
-                <div style={{ display: 'flex', flexDirection: 'column' }}>
-                  <select style={{ width: '230px', marginBottom: '15px' }}>
+                <div>
+                  <select
+                    style={{ width: '180px' }}
+                    // onChange={handleSelectModelName}
+                    // value={modelName}
+                  >
                     <option>시를 선택하세요.</option>
+                    <option value="SUPER CUB">서울시</option>
                   </select>
-                  <select style={{ width: '230px' }}>
+                </div>
+              </div>
+            </InfoWrap>
+            <InfoWrap>
+              <div className="inputItem">
+                <div className="name" />
+                <div>
+                  <select
+                    style={{ width: '180px' }}
+                    // onChange={handleSelectModelName}
+                    // value={modelName}
+                  >
                     <option>구를 선택하세요.</option>
+                    <option value="SUPER CUB">강남구</option>
                   </select>
                 </div>
               </div>
@@ -455,11 +450,11 @@ const Market = () => {
                   marginTop: '15px',
                 }}
               >
-                <select style={{ width: '140px' }}>
+                <select style={{ width: '110px' }}>
                   <option>선택하세요.</option>
                 </select>
                 <span className="line" />
-                <select style={{ width: '140px' }}>
+                <select style={{ width: '110px' }}>
                   <option>선택하세요.</option>
                 </select>
               </div>
@@ -473,11 +468,11 @@ const Market = () => {
                   marginTop: '15px',
                 }}
               >
-                <select style={{ width: '140px' }}>
+                <select style={{ width: '110px' }}>
                   <option>선택하세요.</option>
                 </select>
                 <span className="line" />
-                <select style={{ width: '140px' }}>
+                <select style={{ width: '110px' }}>
                   <option>선택하세요.</option>
                 </select>
               </div>
@@ -491,8 +486,9 @@ const Market = () => {
           </FilterContainer>
           <MyBikeArea>
             <SortContainer>
-              <div>최근 등록순 </div>
-              <img src={SortIcon} alt="정렬" />
+              <select>
+                <option>최근 등록순</option>
+              </select>
             </SortContainer>
             <ListContainer>
               {myBike.map((item) => (
