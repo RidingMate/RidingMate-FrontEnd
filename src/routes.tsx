@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import MainPage from './pages/Main'
-import MarketDetail from './pages/MarketDetail'
+import MarketDetail from './pages/marketDetail/MarketDetail'
 import MyBike from './pages/MyBike'
 import SellPage from './pages/sell/Sell'
 import SellMyBikePage from './pages/sell/Sell-MyBike'
