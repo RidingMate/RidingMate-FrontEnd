@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import main_mark from 'src/assets/images/pages/mybike/bike_main_mark_img.svg'
+import bike_main_mark_img from 'src/assets/images/pages/mybike/bike_main_mark_img.svg'
 
 const ListWrap = styled.ul`
   width: 900px;
@@ -18,7 +18,7 @@ const ListWrap = styled.ul`
       height: 21px;
       margin-left: 5px;
 
-      background: url(${main_mark}) no-repeat;
+      background: url(${bike_main_mark_img}) no-repeat;
     }
   }
 `

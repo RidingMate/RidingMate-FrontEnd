@@ -1,9 +1,11 @@
 import * as S from './Bike.style'
+import { Link } from 'react-router-dom'
 import Button from 'src/elements/Button'
 import tempImgSrc from 'src/assets/images/pages/mybike/bike_list_example_img.jpeg'
 import InfoBox from 'src/elements/InfoBox'
 
 const Bike = () => {
+  const bikeId = 1
   return (
     <S.Bike>
       <S.BikeHeader>
@@ -41,8 +43,12 @@ const Bike = () => {
             <b>2022-05</b>
           </InfoBox>
           <S.BikeInfosBtns>
-            <Button width={'230px'} content={'주유기록(O)'} />
-            <Button width={'230px'} content={'정비기록(O)'} />
+            <Link to={`/mybike/records?id=${bikeId}&type=fuel`}>
+              <Button width={'230px'} content={'주유기록(O)'} />
+            </Link>
+            <Link to={`/mybike/records?id=${bikeId}&type=repair`}>
+              <Button width={'230px'} content={'정비기록(O)'} />
+            </Link>
           </S.BikeInfosBtns>
         </S.BikeInfos>
       </S.BikeContents>

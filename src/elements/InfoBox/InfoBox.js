@@ -6,7 +6,7 @@ const InfoBox = ({
   children,
   width = '470px',
   height = '90px',
-  theme = 'solid',
+  theme = 'border',
   className,
 }) => {
   return (

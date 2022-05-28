@@ -1,11 +1,11 @@
 import { useNavigate } from 'react-router-dom'
-import * as S from './MyBike.style'
+import * as S from './MyBikeListPage.style'
 
 import Button from 'src/elements/Button/Button'
 import BikeList from 'src/components/mybike/BikeList'
 import PageHeader from 'src/elements/PageHeader'
 
-const MyBike = ({ myBikeList = [1, 2] }) => {
+const MyBikeListPage = ({ myBikeList = [1, 2] }) => {
   const navigate = useNavigate()
   return (
     <S.Wrap>
@@ -27,4 +27,4 @@ const MyBike = ({ myBikeList = [1, 2] }) => {
   )
 }
 
-export default MyBike
+export default MyBikeListPage

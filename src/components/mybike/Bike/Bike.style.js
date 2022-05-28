@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
-import main_mark from 'src/assets/images/pages/mybike/bike_main_mark_img.svg'
-import header_edit_img from 'src/assets/images/pages/mybike/bike_info_header_edit_img.svg'
-import header_delete_img from 'src/assets/images/pages/mybike/bike_info_header_delete_img.svg'
+import bike_main_mark_img from 'src/assets/images/pages/mybike/bike_main_mark_img.svg'
+import bike_info_header_edit_img from 'src/assets/images/pages/mybike/bike_info_header_edit_img.svg'
+import bike_info_header_delete_img from 'src/assets/images/pages/mybike/bike_info_header_delete_img.svg'
 
 const Bike = styled.li`
   width: 100%;
@@ -40,11 +40,11 @@ const BikeHeaderBtns = styled.div`
 
     cursor: pointer;
     &.btn-edit {
-      background: url(${header_edit_img});
+      background: url(${bike_info_header_edit_img});
     }
     &.btn-delete {
       margin-left: 20px;
-      background: url(${header_delete_img});
+      background: url(${bike_info_header_delete_img});
     }
   }
 `
@@ -84,7 +84,7 @@ const BikeMainMark = styled.div`
   .logo {
     width: 30px;
     height: 18px;
-    background: url(${main_mark});
+    background: url(${bike_main_mark_img});
   }
 
   .word {

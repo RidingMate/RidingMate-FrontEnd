@@ -9,28 +9,13 @@ import Button from 'src/elements/Button'
 import Input from 'src/elements/Input'
 import Select from 'src/elements/Select'
 import PageHeader from 'src/elements/PageHeader'
-
-/* years와 months 리스트만 뽑기 위한 함수*/
-const yearList = () => {
-  const list = []
-  for (let year = 1980; year <= 2022; year++) {
-    list.push(year)
-  }
-  return list
-}
-
-const monthList = () => {
-  const list = []
-  for (let month = 1; month <= 12; month++) {
-    list.push(month)
-  }
-  return list
-}
+import { makeRangeList } from 'src/hooks/utils'
 
 const MyBikeRegistPage = () => {
   const [imgSrc, setImgSrc] = useState()
   const formData = new FormData()
   const fileReader = new FileReader()
+  const date = new Date()
 
   const handleChange = (e) => {
     if (e.target.files.length) {
@@ -64,7 +49,7 @@ const MyBikeRegistPage = () => {
     <S.Wrap>
       <PageHeader main_title={'MY BIKE'} sub_title={'내 바이크'} />
       <S.Form onSubmit={handleSubmit}>
-        <S.Head>바이크 정보 수정하기</S.Head>
+        <S.Head>새 바이크 등록하기</S.Head>
         <S.Grid>
           <S.Category>
             <div>이미지({imgSrc ? '1' : '0'}/1)</div>
@@ -128,7 +113,7 @@ const MyBikeRegistPage = () => {
 
           <S.Category>연식</S.Category>
           <Select name={'year'} defaultContent={'선택하세요'}>
-            {yearList().map((data, idx) => (
+            {makeRangeList(1990, date.getFullYear()).map((data, idx) => (
               <option key={idx}>{data}년</option>
             ))}
           </Select>
@@ -143,7 +128,7 @@ const MyBikeRegistPage = () => {
               defaultContent={'선택하세요'}
               width={'170px'}
             >
-              {yearList().map((data, idx) => (
+              {makeRangeList(1990, date.getFullYear()).map((data, idx) => (
                 <option key={idx}>{data}년</option>
               ))}
             </Select>
@@ -153,7 +138,7 @@ const MyBikeRegistPage = () => {
               width={'170px'}
               defaultContent={'선택하세요'}
             >
-              {monthList().map((data, idx) => (
+              {makeRangeList(1, 12).map((data, idx) => (
                 <option key={idx}>{data}월</option>
               ))}
             </Select>
