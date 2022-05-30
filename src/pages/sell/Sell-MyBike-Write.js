@@ -409,7 +409,7 @@ const Sell = () => {
           </span>
           <Button
             bColor={'#222222'}
-            onClick={() => navigate('/sell/my-bike/write')}
+            onClick={() => navigate('/sell/mybike/write')}
           >
             입력완료
           </Button>

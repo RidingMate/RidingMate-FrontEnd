@@ -5,7 +5,7 @@ const myBike = [
     cc: '000',
     km: '00000',
     subTitle: '혼다 Super Cub',
-    img: 'https://velog.velcdn.com/images%2Freemrev21%2Fpost%2F3a760ad5-c0e4-457e-8f15-5c7d9f986afc%2F72df9a1e-1b6c-4fff-aed5-0b21a9b685f0.jpg',
+    img: 'https://velog.velcdn.com/images/reemrev21/post/35ffb24d-d0c3-471b-a8e7-27f3fc479cf8/image.jpg',
     price: 3150000,
   },
   {
@@ -14,7 +14,7 @@ const myBike = [
     cc: '000',
     km: '00000',
     subTitle: '혼다 Super Cub',
-    img: 'https://velog.velcdn.com/images%2Freemrev21%2Fpost%2F3a760ad5-c0e4-457e-8f15-5c7d9f986afc%2F72df9a1e-1b6c-4fff-aed5-0b21a9b685f0.jpg',
+    img: 'https://velog.velcdn.com/images/reemrev21/post/35ffb24d-d0c3-471b-a8e7-27f3fc479cf8/image.jpg',
     price: 2520000,
   },
   {
@@ -23,7 +23,7 @@ const myBike = [
     cc: '000',
     km: '00000',
     subTitle: '혼다 Super Cub',
-    img: 'https://velog.velcdn.com/images%2Freemrev21%2Fpost%2F3a760ad5-c0e4-457e-8f15-5c7d9f986afc%2F72df9a1e-1b6c-4fff-aed5-0b21a9b685f0.jpg',
+    img: 'https://velog.velcdn.com/images/reemrev21/post/35ffb24d-d0c3-471b-a8e7-27f3fc479cf8/image.jpg',
     price: 20600000,
   },
   {
@@ -32,7 +32,7 @@ const myBike = [
     cc: '000',
     km: '00000',
     subTitle: '혼다 Super Cub',
-    img: 'https://velog.velcdn.com/images%2Freemrev21%2Fpost%2F3a760ad5-c0e4-457e-8f15-5c7d9f986afc%2F72df9a1e-1b6c-4fff-aed5-0b21a9b685f0.jpg',
+    img: 'https://velog.velcdn.com/images/reemrev21/post/35ffb24d-d0c3-471b-a8e7-27f3fc479cf8/image.jpg',
     price: 315000000,
   },
   {
@@ -41,7 +41,7 @@ const myBike = [
     cc: '000',
     km: '000000',
     subTitle: '혼다 Super Cub',
-    img: 'https://velog.velcdn.com/images%2Freemrev21%2Fpost%2F3a760ad5-c0e4-457e-8f15-5c7d9f986afc%2F72df9a1e-1b6c-4fff-aed5-0b21a9b685f0.jpg',
+    img: 'https://velog.velcdn.com/images/reemrev21/post/35ffb24d-d0c3-471b-a8e7-27f3fc479cf8/image.jpg',
     price: 315000000,
   },
 ]

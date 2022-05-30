@@ -98,7 +98,7 @@ const Sell = () => {
         <ButtonContainer>
           <Button
             bColor={selected.length !== 0 ? '#222222' : '#dddddd'}
-            onClick={() => navigate('/sell/my-bike/write')}
+            onClick={() => navigate('/sell/mybike/write')}
           >
             다음
           </Button>

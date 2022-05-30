@@ -16,8 +16,8 @@ const RouteList = () => {
       <Route path="/mybike" element={<MyBike myBikeList={undefined} />} />
       <Route path="*" element={<div>PAGE NOT FOUND</div>} />
       <Route path="/sell" element={<SellPage />} />
-      <Route path="/sell/my-bike" element={<SellMyBikePage />} />
-      <Route path="/sell/my-bike/write" element={<SellMyBikeWritePage />} />
+      <Route path="/sell/mybike" element={<SellMyBikePage />} />
+      <Route path="/sell/mybike/write" element={<SellMyBikeWritePage />} />
       <Route path="/market" element={<MarketPage />} />
     </Routes>
   )
