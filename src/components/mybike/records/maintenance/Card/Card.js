@@ -1,7 +1,7 @@
-import * as S from './RepairCard.style'
-import InfoBox from 'src/elements/InfoBox'
+import * as S from './Card.style'
+import InfoBox from 'src/elements/infoBox'
 
-const RepairCard = ({
+const Card = ({
   serviceName,
   serviceCenter,
   serviceCharge,
@@ -38,4 +38,4 @@ const RepairCard = ({
   )
 }
 
-export default RepairCard
+export default Card

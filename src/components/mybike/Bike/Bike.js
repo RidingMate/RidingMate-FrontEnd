@@ -1,8 +1,8 @@
 import * as S from './Bike.style'
 import { Link } from 'react-router-dom'
-import Button from 'src/elements/Button'
+import Button from 'src/elements/button'
 import tempImgSrc from 'src/assets/images/pages/mybike/bike_list_example_img.jpeg'
-import InfoBox from 'src/elements/InfoBox'
+import InfoBox from 'src/elements/infoBox'
 
 const Bike = () => {
   const bikeId = 1

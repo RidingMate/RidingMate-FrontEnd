@@ -5,10 +5,10 @@ import * as S from './MyBikeRegistPage.style'
 import regist_button_bike_img from 'src/assets/images/pages/mybike/regist/regist_button_bike_img.svg'
 import regist_button_added_img_close from 'src/assets/images/pages/mybike/regist/regist_button_added_img_close.svg'
 
-import Button from 'src/elements/Button'
-import Input from 'src/elements/Input'
-import Select from 'src/elements/Select'
-import PageHeader from 'src/elements/PageHeader'
+import Button from 'src/elements/button'
+import Input from 'src/elements/input'
+import Select from 'src/elements/select'
+import PageHeader from 'src/elements/pageHeader'
 import { makeRangeList } from 'src/hooks/utils'
 
 const MyBikeRegistPage = () => {

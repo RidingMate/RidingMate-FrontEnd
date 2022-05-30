@@ -1,7 +1,7 @@
-import * as S from './FuelCard.style'
-import InfoBox from 'src/elements/InfoBox'
+import * as S from './Card.style'
+import InfoBox from 'src/elements/infoBox'
 
-const FuelCard = ({ amount, price, date, handleEdit, handleDelete }) => {
+const Card = ({ amount, price, date, handleEdit, handleDelete }) => {
   return (
     <S.Card>
       <InfoBox
@@ -25,4 +25,4 @@ const FuelCard = ({ amount, price, date, handleEdit, handleDelete }) => {
   )
 }
 
-export default FuelCard
+export default Card

@@ -1,9 +1,9 @@
-import InfoBox from 'src/elements/InfoBox'
-import Select from 'src/elements/Select'
+import InfoBox from 'src/elements/infoBox'
+import Select from 'src/elements/select'
 import { makeRangeList } from 'src/hooks/utils'
 import * as S from './BikeRecords.style'
-import FuelCard from './FuelCard'
-import RepairCard from './RepairCard'
+import FuelCard from './refuel/Card'
+import RepairCard from './maintenance/Card'
 
 const BikeRecords = ({ bikeIndex, recordType }) => {
   const date = new Date()

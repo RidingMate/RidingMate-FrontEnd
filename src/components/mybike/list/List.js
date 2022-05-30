@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router-dom'
-import * as S from './BikeList.style'
+import * as S from './List.style'
 
-import Button from 'src/elements/Button'
-import Bike from '../Bike'
+import Button from 'src/elements/button'
+import Bike from '../bike'
 
-const BikeList = () => {
+const List = () => {
   const navigate = useNavigate()
 
   return (
@@ -20,4 +20,4 @@ const BikeList = () => {
   )
 }
 
-export default BikeList
+export default List

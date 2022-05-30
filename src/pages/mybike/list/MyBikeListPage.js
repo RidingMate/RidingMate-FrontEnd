@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router-dom'
 import * as S from './MyBikeListPage.style'
 
-import Button from 'src/elements/Button/Button'
-import BikeList from 'src/components/mybike/BikeList'
-import PageHeader from 'src/elements/PageHeader'
+import Button from 'src/elements/button/Button'
+import BikeList from 'src/components/mybike/list'
+import PageHeader from 'src/elements/pageHeader'
 
 const MyBikeListPage = ({ myBikeList = [1, 2] }) => {
   const navigate = useNavigate()
