@@ -5,7 +5,6 @@ import bike_info_detail_add_button from 'src/assets/images/pages/mybike/records/
 const Wrap = styled.div`
   width: 100%;
   max-width: 900px;
-
   h2 {
     padding-top: 20px;
 

@@ -2,8 +2,8 @@ import InfoBox from 'src/elements/infoBox'
 import Select from 'src/elements/select'
 import { makeRangeList } from 'src/hooks/utils'
 import * as S from './BikeRecords.style'
-import FuelCard from './refuel/Card'
-import RepairCard from './maintenance/Card'
+import FuelCard from './refuel/card'
+import MaintenanceCard from './maintenance/card'
 
 const BikeRecords = ({ bikeIndex, recordType }) => {
   const date = new Date()
@@ -95,19 +95,22 @@ const BikeRecords = ({ bikeIndex, recordType }) => {
           </div>
         ) : (
           <div className="detail-repair-cards">
-            <RepairCard
+            <MaintenanceCard
+              id={1}
               serviceName={'점검1'}
               serviceCenter={'서비스센터1'}
               serviceCharge={11111}
               serviceDate={'1111-11-11'}
             />
-            <RepairCard
+            <MaintenanceCard
+              id={2}
               serviceName={'점검2'}
               serviceCenter={'서비스센터2'}
               serviceCharge={22222}
               serviceDate={'2222-22-22'}
             />
-            <RepairCard
+            <MaintenanceCard
+              id={3}
               serviceName={'점검3'}
               serviceCenter={'서비스센터3'}
               serviceCharge={33333}

@@ -16,6 +16,10 @@ const Card = styled.div`
 
     padding: 25px 25px;
     .card-pos-top {
+      a {
+        text-decoration: none;
+        color: #222222;
+      }
       .service-name-center {
         .name {
           font-size: 15px;
