@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import main_mark from 'src/assets/images/pages/mybike/bike_main_mark_img.svg'
 
 const Wrap = styled.div`
   width: 100%;
@@ -17,19 +18,27 @@ const Title = styled.div`
     text-align: center;
   }
   p {
-    font-sizie: 15px;
+    font-size: 15px;
     text-align: center;
   }
 `
 
-const NoBike = styled.div`
+const NoBikeWrap = styled.div`
   margin-top: 240px;
   p {
     text-align: center;
     margin-bottom: 15px;
   }
   button {
+    ::after {
+      content: '';
+      width: 35px;
+      height: 21px;
+      margin-left: 5px;
+
+      background: url(${main_mark}) no-repeat;
+    }
   }
 `
 
-export { Wrap, Title, NoBike }
+export { Wrap, Title, NoBikeWrap }

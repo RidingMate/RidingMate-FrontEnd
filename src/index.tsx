@@ -7,8 +7,8 @@ import './reset.css'
 // import { ReactQueryDevtools } from 'react-query/devtools'
 // import { QueryClient, QueryClientProvider } from 'react-query'
 
-const container = document.getElementById('root')
-const root = createRoot(container!)
+const container = document.getElementById('root') as HTMLElement
+const root = createRoot(container) // type 경고가 있어서 수정했습니다.
 
 root.render(
   // <Provider store={store}>
