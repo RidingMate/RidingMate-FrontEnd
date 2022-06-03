@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import Layout from '../../components/sell/Layout'
 import Procedure from '../../components/sell/Procedure'
 import { useNavigate } from 'react-router-dom'
-// import arrow from './arrow.png'
+import arrow from './arrow.svg'
 import camIcon from './camIcon.png'
 
 const Wrap = styled.div`
@@ -72,7 +72,7 @@ const InfoWrap = styled.div`
     border: 2px solid #dddddd;
     border-radius: 15px;
     font-family: 'Apple SD Gothic Neo';
-    background: url('arrow.png') no-repeat 95% 50%;
+    background: url(${arrow}) no-repeat 95% 50%;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
