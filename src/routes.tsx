@@ -3,9 +3,9 @@ import MainPage from './pages/Main'
 import MarketDetail from './pages/MarketDetail'
 import MyBike from './pages/MyBike'
 import SellPage from './pages/sell/Sell'
-import SellMyBikePage from './pages/sell/Sell-MyBike'
+import SellMyBikePage from './pages/sell/SellMyBike'
 
-import SellMyBikeWritePage from './pages/sell/Sell-MyBike-Write'
+import SellMyBikeWritePage from './pages/sell/SellMyBikeWrite'
 import MarketPage from './pages/market/Market'
 
 const RouteList = () => {
