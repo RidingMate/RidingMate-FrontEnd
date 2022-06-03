@@ -1,4 +1,4 @@
-// import React, { useState } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import Layout from '../../components/sell/Layout'
 import Procedure from '../../components/sell/Procedure'
@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import camIcon from './camIcon.png'
 
 const Wrap = styled.div`
-  width: 60%;
+  width: 55%;
   display: flex;
   flex-direction: column;
 
@@ -149,6 +149,7 @@ const InfoWrap = styled.div`
 `
 
 const ImageContainer = styled.div`
+  width: 100%;
   font-family: 'Apple SD Gothic Neo';
   font-style: normal;
   font-weight: 700;
@@ -164,29 +165,11 @@ const ImageContainer = styled.div`
 `
 
 const ImageWrap = styled.div`
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap: 25px;
 
   padding: 30px 0px;
-
-  .imageAddBox {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    width: 160px;
-    height: 160px;
-
-    background: #ffffff;
-    border: 2px solid #dddddd;
-    border-radius: 15px;
-
-    img {
-      width: 40px;
-      height: 35px;
-    }
-  }
 
   .text {
     font-family: 'Apple SD Gothic Neo';
@@ -196,6 +179,34 @@ const ImageWrap = styled.div`
     color: #999999;
 
     margin-top: 10.57px;
+  }
+
+  .imageItem {
+    width: 160px;
+    height: 160px;
+    border-radius: 15px;
+    object-fit: cover;
+  }
+`
+
+const ImageLabel = styled.label`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  width: 160px;
+  height: 160px;
+
+  background: #ffffff;
+  outline: 2px solid #dddddd;
+  border-radius: 15px;
+
+  img {
+    width: 40px;
+    height: 35px;
   }
 `
 
@@ -280,6 +291,28 @@ const Button = styled.div`
 
 const Sell = () => {
   const navigate = useNavigate()
+  // const [imageFile, setImageFile] = useState([])
+  const [imagePreview, setImagePreview] = useState([])
+
+  const handleImageUpload = (e) => {
+    const fileArr = e.target.files
+
+    let fileURLs = []
+    let file
+    let filesLength = fileArr.length > 20 ? 20 : fileArr.length
+
+    for (let i = 0; i < filesLength; i++) {
+      file = fileArr[i]
+
+      let reader = new FileReader()
+      reader.onload = () => {
+        fileURLs[i] = reader.result
+        setImagePreview([...fileURLs])
+        // setImageFile(e.target.files[i])
+      }
+      reader.readAsDataURL(file)
+    }
+  }
 
   return (
     <Layout title="SELL" smallTitle="판매하기">
@@ -377,14 +410,33 @@ const Sell = () => {
         </InfoContainer>
         <Divider style={{ marginTop: '30px' }} />
         <ImageContainer>
-          <div style={{ marginTop: '20px' }}>이미지(4/8)</div>
+          <div style={{ marginTop: '20px' }}>
+            이미지({imagePreview.length}/20)
+          </div>
           <span className="smallText">선택사항</span>
           <Divider style={{ marginTop: '20px' }} />
           <ImageWrap>
-            <div className="imageAddBox">
+            <ImageLabel>
               <img src={camIcon} alt="사진 추가하기" />
               <span className="text">사진 추가하기</span>
-            </div>
+              <input
+                style={{ display: 'none' }}
+                id="image"
+                type="file"
+                multiple
+                accept="image/png, image/jpeg, image/jpg, image/gif"
+                onChange={handleImageUpload}
+              />
+            </ImageLabel>
+            {imagePreview.length > 0 &&
+              imagePreview.map((item, index) => (
+                <img
+                  className="imageItem"
+                  src={item}
+                  key={index}
+                  alt={`등록 이미지 ${index}`}
+                />
+              ))}
           </ImageWrap>
         </ImageContainer>
         <Divider />
