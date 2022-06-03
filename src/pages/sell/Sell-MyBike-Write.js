@@ -65,44 +65,6 @@ const InfoWrap = styled.div`
     margin-right: 31px;
   }
 
-  select {
-    width: 400px;
-    height: 60px;
-    padding: 21px 25px;
-    border: 2px solid #dddddd;
-    border-radius: 15px;
-    font-family: 'Apple SD Gothic Neo';
-    background: url(${arrow}) no-repeat 95% 50%;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-
-    font-family: 'Apple SD Gothic Neo';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 14px;
-  }
-
-  select::-ms-expand {
-    display: none;
-  }
-
-  input[type='text'] {
-    width: 400px;
-    height: 60px;
-    padding: 21px 25px;
-
-    background: #ffffff;
-    border: 2px solid #dddddd;
-    border-radius: 15px;
-
-    font-family: 'Apple SD Gothic Neo';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 14px;
-    color: #222222;
-  }
-
   .yearText {
     font-family: 'Apple SD Gothic Neo';
     font-style: normal;
@@ -145,6 +107,45 @@ const InfoWrap = styled.div`
       margin-left: 2px;
       text-decoration: underline;
     }
+  }
+`
+
+const InputText = styled.input`
+  width: ${(props) => props.width || '400px'};
+  height: 60px;
+  padding: 21px 25px;
+
+  background: #ffffff;
+  border: 2px solid #dddddd;
+  border-radius: 15px;
+
+  font-family: 'Apple SD Gothic Neo';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  color: #222222;
+`
+
+const Select = styled.select`
+  width: ${(props) => props.width || '400px'};
+  height: 60px;
+  padding: 21px 25px;
+  border: 2px solid #dddddd;
+  border-radius: 15px;
+  font-family: 'Apple SD Gothic Neo';
+  background: url(${arrow}) no-repeat 95% 50%;
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  font-family: 'Apple SD Gothic Neo';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+
+  select::-ms-expand {
+    display: none;
   }
 `
 
@@ -324,18 +325,18 @@ const Sell = () => {
           <InfoWrap>
             <div className="inputItem">
               <div className="name">제조사</div>
-              <select>
+              <Select>
                 <option>혼다</option>
-              </select>
+              </Select>
             </div>
           </InfoWrap>
           <InfoWrap>
             <div className="inputItem">
               <div className="name">모델명</div>
               <div>
-                <select>
+                <Select>
                   <option>Super Cub</option>
-                </select>
+                </Select>
                 <div className="guideText">
                   찾으시는 제조사/모델이 없나요?
                   <span className="highlight">정보추가 요청하기</span>
@@ -346,27 +347,27 @@ const Sell = () => {
           <InfoWrap>
             <div className="inputItem">
               <div className="name">연식</div>
-              <select>
+              <Select>
                 <option>2021</option>
-              </select>
+              </Select>
             </div>
           </InfoWrap>
           <InfoWrap>
             <div className="inputItem">
               <div className="name">누적주행거리(km)</div>
-              <input type="text" />
+              <InputText type="text" />
             </div>
           </InfoWrap>
           <InfoWrap>
             <div className="inputItem">
               <div className="name">구매일자</div>
-              <select style={{ width: '170px' }}>
+              <Select width="170px">
                 <option>2021</option>
-              </select>
+              </Select>
               <span className="yearText">년</span>
-              <select style={{ width: '170px' }}>
+              <Select width="170px">
                 <option>10</option>
-              </select>
+              </Select>
               <span className="yearText">월</span>
             </div>
           </InfoWrap>
@@ -377,34 +378,34 @@ const Sell = () => {
           <InfoWrap>
             <div className="inputItem">
               <div className="name">제목</div>
-              <input type="text" />
+              <InputText type="text" />
             </div>
           </InfoWrap>
           <InfoWrap>
             <div className="inputItem">
               <div className="name">연락처</div>
-              <input type="text" style={{ width: '110px' }} />
+              <InputText type="text" width="110px" />
               <span className="phoneText">-</span>
-              <input type="text" style={{ width: '110px' }} />
+              <InputText type="text" width="110px" />
               <span className="phoneText">-</span>
-              <input type="text" style={{ width: '110px' }} />
+              <InputText type="text" width="110px" />
             </div>
           </InfoWrap>
           <InfoWrap>
             <div className="inputItem">
               <div className="name">거래지역</div>
-              <select style={{ width: '180px', marginRight: '40px' }}>
+              <Select width={'180px'} style={{ marginRight: '40px' }}>
                 <option>서울특별시</option>
-              </select>
-              <select style={{ width: '180px' }}>
+              </Select>
+              <Select width={'180px'}>
                 <option>강남구</option>
-              </select>
+              </Select>
             </div>
           </InfoWrap>
           <InfoWrap>
             <div className="inputItem">
               <div className="name">가격(원)</div>
-              <input type="text" />
+              <InputText type="text" />
             </div>
           </InfoWrap>
         </InfoContainer>
