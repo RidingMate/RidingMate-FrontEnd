@@ -1,22 +1,36 @@
 import styled from 'styled-components'
 
 const Wrap = styled.div`
-  width: 900px;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   margin-bottom: 172px;
-  h2 {
-    padding-bottom: 15px;
-    border-bottom: 1px solid #e2e2e2;
-  }
 `
 
 const Form = styled.form`
-  width: 100%;
+  width: 900px;
+
+  margin-top: 58px;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+`
+
+const Head = styled.div`
+  width: 100%;
+  padding: 15px 0;
+
+  align-self: start;
+
+  font-size: 25px;
+  font-weight: 800;
+
+  border-bottom: 1px solid #e2e2e2;
 `
 
 const Grid = styled.div`
@@ -163,6 +177,7 @@ const Btn = styled.button`
 export {
   Wrap,
   Form,
+  Head,
   Grid,
   Category,
   UploadBox,

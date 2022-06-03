@@ -1,33 +1,21 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import * as S from './RegistForm.style'
-import RegistButtonImg from '../../../assets/images/pages/MyBike/regist_button_img.svg'
-import closeImg from '../../../assets/images/pages/MyBike/close.svg'
-import Button from '../../../elements/Button'
-import Input from '../../../elements/Input'
-import Select from '../../../elements/Select'
+import * as S from './MyBikeRegistPage.style'
 
-/* years와 months 리스트만 뽑기 위한 함수*/
-const yearList = () => {
-  const list = []
-  for (let year = 1980; year <= 2022; year++) {
-    list.push(year)
-  }
-  return list
-}
+import regist_button_bike_img from 'src/assets/images/pages/mybike/regist/regist_button_bike_img.svg'
+import regist_button_added_img_close from 'src/assets/images/pages/mybike/regist/regist_button_added_img_close.svg'
 
-const monthList = () => {
-  const list = []
-  for (let month = 1; month <= 12; month++) {
-    list.push(month)
-  }
-  return list
-}
+import Button from 'src/elements/button'
+import Input from 'src/elements/input'
+import Select from 'src/elements/select'
+import PageHeader from 'src/elements/pageHeader'
+import { makeRangeList } from 'src/hooks/utils'
 
-const BikeRegistForm = () => {
+const MyBikeRegistPage = () => {
   const [imgSrc, setImgSrc] = useState()
   const formData = new FormData()
   const fileReader = new FileReader()
+  const date = new Date()
 
   const handleChange = (e) => {
     if (e.target.files.length) {
@@ -59,8 +47,9 @@ const BikeRegistForm = () => {
 
   return (
     <S.Wrap>
-      <h2>새 바이크 등록하기</h2>
+      <PageHeader main_title={'MY BIKE'} sub_title={'내 바이크'} />
       <S.Form onSubmit={handleSubmit}>
+        <S.Head>새 바이크 등록하기</S.Head>
         <S.Grid>
           <S.Category>
             <div>이미지({imgSrc ? '1' : '0'}/1)</div>
@@ -78,7 +67,7 @@ const BikeRegistForm = () => {
             {imgSrc ? (
               <S.Thumbnail src={imgSrc} alt="bike_image">
                 <S.Btn
-                  src={closeImg}
+                  src={regist_button_added_img_close}
                   onClick={handleDelete}
                   color={'#FFFFFF'}
                   width={'15px'}
@@ -87,7 +76,11 @@ const BikeRegistForm = () => {
               </S.Thumbnail>
             ) : (
               <S.UploadBox htmlFor="uploader">
-                <S.Image src={RegistButtonImg} width={'40px'} height={'36px'} />
+                <S.Image
+                  src={regist_button_bike_img}
+                  width={'40px'}
+                  height={'36px'}
+                />
                 사진추가하기
               </S.UploadBox>
             )}
@@ -120,7 +113,7 @@ const BikeRegistForm = () => {
 
           <S.Category>연식</S.Category>
           <Select name={'year'} defaultContent={'선택하세요'}>
-            {yearList().map((data, idx) => (
+            {makeRangeList(1990, date.getFullYear()).map((data, idx) => (
               <option key={idx}>{data}년</option>
             ))}
           </Select>
@@ -135,7 +128,7 @@ const BikeRegistForm = () => {
               defaultContent={'선택하세요'}
               width={'170px'}
             >
-              {yearList().map((data, idx) => (
+              {makeRangeList(1990, date.getFullYear()).map((data, idx) => (
                 <option key={idx}>{data}년</option>
               ))}
             </Select>
@@ -145,7 +138,7 @@ const BikeRegistForm = () => {
               width={'170px'}
               defaultContent={'선택하세요'}
             >
-              {monthList().map((data, idx) => (
+              {makeRangeList(1, 12).map((data, idx) => (
                 <option key={idx}>{data}월</option>
               ))}
             </Select>
@@ -163,4 +156,4 @@ const BikeRegistForm = () => {
   )
 }
 
-export default BikeRegistForm
+export default MyBikeRegistPage

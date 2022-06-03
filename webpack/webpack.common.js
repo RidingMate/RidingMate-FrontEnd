@@ -11,6 +11,9 @@ module.exports = {
   entry: path.resolve(__dirname, '..', './src/index.tsx'),
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
+    alias: {
+      src: path.resolve(__dirname, '../src'),
+    }, // src 절대경로 사용을 위해 추가했습니다.
     plugins: [new TsconfigPathsPlugin()],
   },
   devtool: 'source-map',
@@ -51,7 +54,7 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, '..', './build'),
-    publicPath: '/',
+    publicPath: '/', // route 새로고침 시 오류 해결
   },
   optimization: {
     removeAvailableModules: false,

@@ -16,12 +16,13 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "baseUrl": "./",
-    "paths": {
-      "@/*": ["src/*"],
-      "@pages/*": ["src/pages/*"],
-      "@components/*": ["src/components/*"]
-    }
+    "baseUrl": "./"
+    // "paths": {
+    //   "@/*": ["src/*"],
+    //   "@pages/*": ["src/pages/*"],
+    //   "@components/*": ["src/components/*"]
+    // }
+    // 위의 paths로 import되어 일단 주석처리 했습니다.
   },
   "include": ["src"]
 }
