@@ -208,50 +208,6 @@ const InfoWrap = styled.div`
     color: #555555;
   }
 
-  select {
-    width: 180px;
-    height: 60px;
-    padding: 21px 15px;
-    border: 2px solid #dddddd;
-    border-radius: 15px;
-    font-family: 'Apple SD Gothic Neo';
-    background: url(${selectIcon}) no-repeat 90% 50%;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    font-family: 'Apple SD Gothic Neo';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 13px;
-    line-height: 16px;
-
-    color: #999999;
-  }
-
-  select::-ms-expand {
-    display: none;
-  }
-
-  select option[value=''][disabled] {
-    display: none;
-  }
-
-  input[type='text'] {
-    width: 110px;
-    height: 60px;
-    padding: 21px 15px;
-    background: #ffffff;
-    border: 2px solid #dddddd;
-    border-radius: 15px;
-    font-family: 'Apple SD Gothic Neo';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 13px;
-    line-height: 16px;
-
-    color: #222222;
-  }
-
   .line {
     height: 3px;
     width: 15px;
@@ -261,6 +217,50 @@ const InfoWrap = styled.div`
     margin-left: 15px;
     margin-right: 15px;
   }
+`
+
+const Select = styled.select`
+  width: ${(props) => props.width || '180px'};
+  height: 60px;
+  padding: 21px 15px;
+  border: 2px solid #dddddd;
+  border-radius: 15px;
+  font-family: 'Apple SD Gothic Neo';
+  background: url(${selectIcon}) no-repeat 90% 50%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  font-family: 'Apple SD Gothic Neo';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+
+  color: #999999;
+
+  select::-ms-expand {
+    display: none;
+  }
+
+  select option[value=''][disabled] {
+    display: none;
+  }
+`
+
+const InputText = styled.input`
+  width: ${(props) => props.width || '110px'};
+  height: 60px;
+  padding: 21px 15px;
+  background: #ffffff;
+  border: 2px solid #dddddd;
+  border-radius: 15px;
+  font-family: 'Apple SD Gothic Neo';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+
+  color: #222222;
 `
 
 const ButtonContainer = styled.div`
@@ -355,8 +355,8 @@ const Market = () => {
               <div className="inputItem">
                 <div className="name">제조사</div>
                 <div>
-                  <select
-                    style={{ width: '180px' }}
+                  <Select
+                    width="180px"
                     onChange={handleSelectCompany}
                     value={company}
                   >
@@ -364,7 +364,7 @@ const Market = () => {
                       선택하세요.
                     </option>
                     <option value="HONDA">혼다</option>
-                  </select>
+                  </Select>
                 </div>
               </div>
             </InfoWrap>
@@ -372,14 +372,14 @@ const Market = () => {
               <div className="inputItem">
                 <div className="name">모델명</div>
                 <div>
-                  <select
-                    style={{ width: '180px' }}
+                  <Select
+                    width="180px"
                     onChange={handleSelectModelName}
                     value={modelName}
                   >
                     <option>선택하세요.</option>
                     <option value="SUPER CUB">SUPER CUB</option>
-                  </select>
+                  </Select>
                 </div>
               </div>
             </InfoWrap>
@@ -387,14 +387,14 @@ const Market = () => {
               <div className="inputItem">
                 <div className="name">거래지역</div>
                 <div>
-                  <select
-                    style={{ width: '180px' }}
+                  <Select
+                    width="180px"
                     // onChange={handleSelectModelName}
                     // value={modelName}
                   >
                     <option>시를 선택하세요.</option>
                     <option value="SUPER CUB">서울시</option>
-                  </select>
+                  </Select>
                 </div>
               </div>
             </InfoWrap>
@@ -402,14 +402,14 @@ const Market = () => {
               <div className="inputItem">
                 <div className="name" />
                 <div>
-                  <select
-                    style={{ width: '180px' }}
+                  <Select
+                    width="180px"
                     // onChange={handleSelectModelName}
                     // value={modelName}
                   >
                     <option>구를 선택하세요.</option>
                     <option value="SUPER CUB">강남구</option>
-                  </select>
+                  </Select>
                 </div>
               </div>
             </InfoWrap>
@@ -422,9 +422,9 @@ const Market = () => {
                   marginTop: '15px',
                 }}
               >
-                <input type="text" placeholder="최소값" />
+                <InputText type="text" placeholder="최소값" />
                 <span className="line" />
-                <input type="text" placeholder="최대값" />
+                <InputText type="text" placeholder="최대값" />
               </div>
             </InfoWrap>
             <InfoWrap>
@@ -436,9 +436,9 @@ const Market = () => {
                   marginTop: '15px',
                 }}
               >
-                <input type="text" placeholder="최소값" />
+                <InputText type="text" placeholder="최소값" />
                 <span className="line" />
-                <input type="text" placeholder="최대값" />
+                <InputText type="text" placeholder="최대값" />
               </div>
             </InfoWrap>
             <InfoWrap>
@@ -450,13 +450,13 @@ const Market = () => {
                   marginTop: '15px',
                 }}
               >
-                <select style={{ width: '110px' }}>
+                <Select>
                   <option>선택하세요.</option>
-                </select>
+                </Select>
                 <span className="line" />
-                <select style={{ width: '110px' }}>
+                <Select>
                   <option>선택하세요.</option>
-                </select>
+                </Select>
               </div>
             </InfoWrap>
             <InfoWrap>
@@ -468,13 +468,13 @@ const Market = () => {
                   marginTop: '15px',
                 }}
               >
-                <select style={{ width: '110px' }}>
+                <Select>
                   <option>선택하세요.</option>
-                </select>
+                </Select>
                 <span className="line" />
-                <select style={{ width: '110px' }}>
+                <Select>
                   <option>선택하세요.</option>
-                </select>
+                </Select>
               </div>
             </InfoWrap>
             <ButtonContainer>
