@@ -3,8 +3,8 @@ import styled from 'styled-components'
 import Layout from '../../components/sell/Layout'
 import Procedure from '../../components/sell/Procedure'
 import { useNavigate } from 'react-router-dom'
-import arrow from './arrow.svg'
-import camIcon from './camIcon.png'
+import arrow from '../../assets/images/pages/sell/arrow.svg'
+import camIcon from '../../assets/images/pages/sell/camIcon.png'
 
 const Wrap = styled.div`
   width: 55%;
