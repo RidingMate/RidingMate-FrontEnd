@@ -8,7 +8,7 @@ const SellProcedure = styled.div`
   align-items: center;
 
   .diagram_wrap {
-    width: 171px;
+    /* width: 171px; */
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -63,13 +63,19 @@ const SellProcedure = styled.div`
   }
 `
 const Procedure = (props) => {
-  const { name } = props
+  const { name, type } = props
 
   return (
     <SellProcedure>
       <div className="diagram_wrap">
-        <div className={`circle ${name === '바이크 선택' ? 'selected' : ''}`} />
-        <div className="line" />
+        {type === 'my' && (
+          <>
+            <div
+              className={`circle ${name === '바이크 선택' ? 'selected' : ''}`}
+            />
+            <div className="line" />
+          </>
+        )}
         <div
           className={`circle ${
             name === '바이크/거래 정보 입력' ? 'selected' : ''
@@ -79,9 +85,11 @@ const Procedure = (props) => {
         <div className="circle" />
       </div>
       <div className="text_wrap">
-        <div className={`text ${name === '바이크 선택' ? 'selected' : ''}`}>
-          바이크 선택
-        </div>
+        {type === 'my' && (
+          <div className={`text ${name === '바이크 선택' ? 'selected' : ''}`}>
+            바이크 선택
+          </div>
+        )}
         <div
           className={`text ${
             name === '바이크/거래 정보 입력' ? 'selected' : ''

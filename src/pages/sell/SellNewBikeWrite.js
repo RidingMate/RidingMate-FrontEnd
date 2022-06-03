@@ -26,7 +26,7 @@ const Wrap = styled.div`
   padding-bottom: 110px;
 `
 
-const SellMyBikeWrite = () => {
+const SellNewBikeWrite = () => {
   const navigate = useNavigate()
   // const [imageFile, setImageFile] = useState([])
   const [imagePreview, setImagePreview] = useState([])
@@ -54,7 +54,7 @@ const SellMyBikeWrite = () => {
   return (
     <Layout title="SELL" smallTitle="판매하기">
       <Wrap>
-        <Procedure name="바이크/거래 정보 입력" type="my" />
+        <Procedure name="바이크/거래 정보 입력" type="new" />
         <InfoContainer>
           <span className="infoTitle">바이크 정보</span>
           <Divider />
@@ -208,4 +208,4 @@ const SellMyBikeWrite = () => {
   )
 }
 
-export default SellMyBikeWrite
+export default SellNewBikeWrite

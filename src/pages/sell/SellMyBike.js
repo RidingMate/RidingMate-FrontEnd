@@ -32,7 +32,7 @@ const Sell = () => {
   return (
     <Layout title="SELL" smallTitle="판매하기">
       <Wrap>
-        <Procedure name="바이크 선택" />
+        <Procedure name="바이크 선택" type="my" />
         <Title>판매할 바이크를 선택하세요.</Title>
         <MyBikeContainer
           gridColumns={
