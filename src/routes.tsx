@@ -9,11 +9,13 @@ import MarketPage from './pages/market/Market'
 import MyBikeRecordsPage from './pages/mybike/records'
 import MyBikeListPage from './pages/mybike/list'
 import MyBikeRegistPage from './pages/mybike/regist'
+import LoginPage from './pages/users/Login'
 
 const RouteList = () => {
   return (
     <Routes>
       <Route path="/" element={<MainPage />} />
+      <Route path="/login" element={<LoginPage />} />
       <Route path="/product/*" element={<MarketDetail />} />
       <Route path="/mybike" element={<MyBikeListPage />} />
       <Route path="/mybike/regist" element={<MyBikeRegistPage />} />
