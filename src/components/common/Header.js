@@ -64,8 +64,12 @@ const Header = () => {
           height={39}
         />
         <div className="menu_box">
-          <div className="menu_item">SELL</div>
-          <div className="menu_item">MARKET</div>
+          <div className="menu_item">
+            <Link to="/sell">SELL</Link>
+          </div>
+          <div className="menu_item">
+            <Link to="/market">MARKET</Link>
+          </div>
           <div className="menu_item">
             <Link to="/mybike">MY BIKE</Link>
           </div>
