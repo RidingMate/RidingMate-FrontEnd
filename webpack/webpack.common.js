@@ -4,7 +4,7 @@ const CopyPlugin = require('copy-webpack-plugin')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const { TsconfigPathsPlugin } = require('tsconfig-paths-webpack-plugin')
 
-const mode = process.env.NODE_ENV || 'development';
+const mode = process.env.NODE_ENV || 'development'
 
 module.exports = {
   mode,
@@ -14,14 +14,14 @@ module.exports = {
     alias: {
       src: path.resolve(__dirname, '../src'),
     }, // src 절대경로 사용을 위해 추가했습니다.
-    plugins: [new TsconfigPathsPlugin()]
+    plugins: [new TsconfigPathsPlugin()],
   },
-  devtool: "source-map",
+  devtool: 'source-map',
   module: {
     rules: [
       {
         test: /\.(ts|tsx)$/,
-        loader: "ts-loader",
+        loader: 'ts-loader',
         options: {
           transpileOnly: true,
           experimentalWatchApi: true,
@@ -76,4 +76,4 @@ module.exports = {
           : false,
     }),
   ],
-};
+}

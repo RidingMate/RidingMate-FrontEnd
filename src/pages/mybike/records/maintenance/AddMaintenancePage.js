@@ -1,6 +1,6 @@
 import * as S from './AddMaintenancePage.style'
 // import { useSearchParams } from 'react-router-dom'
-import PageHeader from '../../../../elements/PageHeader'
+import PageHeader from '../../../../elements/pageHeader'
 import RecordContent from '../../../../components/mybike/records/maintenance/AddMaintenance'
 
 const AddMaintenancePage = () => {

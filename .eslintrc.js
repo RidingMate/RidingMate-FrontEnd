@@ -23,6 +23,7 @@ module.exports = {
     'react/jsx-uses-react': 'off',
     'react/react-in-jsx-scope': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
+    'import/no-unresolved': 'off', // 절대 경로 사용 시 오류로 추가했습니다.
   },
   settings: {
     react: {

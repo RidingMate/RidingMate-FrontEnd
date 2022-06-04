@@ -11,15 +11,24 @@ const Button = ({
   width = '250px',
   logo,
   type,
+  className,
+  children,
 }) => {
   const handleClick = () => {
     onClick()
   }
   return (
     <Wrap>
-      <Btn onClick={handleClick} type={type} theme={theme} width={width}>
+      <Btn
+        onClick={handleClick}
+        type={type}
+        className={className}
+        theme={theme}
+        width={width}
+      >
         <div>{logo}</div>
         <div>{content}</div>
+        {children}
       </Btn>
     </Wrap>
   )

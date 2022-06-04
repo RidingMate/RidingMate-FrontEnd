@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import dropdownImg from '../../assets/images/pages/MyBike/dropdown.svg'
+import btn_dropdwon_img from './btn_dropdwon_img.svg'
 
 const Select = styled.select`
   width: ${({ width }) => width || '400px'};
@@ -8,7 +8,7 @@ const Select = styled.select`
 
   appearance: none;
 
-  background: url(${dropdownImg}) no-repeat 95% 50%;
+  background: url(${btn_dropdwon_img}) no-repeat 95% 50%;
   background-color: #ffffff;
   border: 2px solid #dddddd;
   border-radius: 15px;
