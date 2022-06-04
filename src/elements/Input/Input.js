@@ -1,6 +1,6 @@
 import * as S from './Input.style'
 
-const Input = ({ type, name, placeholder, width, value, onChange }) => {
+const Input = ({ type, name, placeholder, width, value, onChange, flex }) => {
   return (
     <S.Wrap>
       <S.MyInput
@@ -10,6 +10,7 @@ const Input = ({ type, name, placeholder, width, value, onChange }) => {
         width={width}
         value={value}
         onChange={onChange}
+        flex={flex}
       />
     </S.Wrap>
   )

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import * as S from './RegistForm.style'
+import * as S from './MyBikeRegistPage.style'
 import RegistButtonImg from '../../../assets/images/pages/MyBike/regist_button_img.svg'
 import closeImg from '../../../assets/images/pages/MyBike/close.svg'
 import Button from '../../../elements/Button'
