@@ -36,11 +36,14 @@ const Btn = styled.div`
   }
 `
 
-const Button = ({ img, type }) => {
+const Button = ({ page, img, type, onClick }) => {
   return (
-    <Btn>
+    <Btn onClick={onClick}>
       <img src={img} alt={`${type} 로고`} />
-      <span>{type} 계정으로 시작하기</span>
+      <span>
+        {type}
+        {page === '회원가입' ? ' 계정으로 시작하기' : ' 계정 로그인'}
+      </span>
     </Btn>
   )
 }
