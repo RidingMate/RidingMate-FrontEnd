@@ -1,3 +1,3 @@
-import MaintenancePage from './MaintenancePage'
+import AddMaintenancePage from './AddMaintenancePage'
 
-export default MaintenancePage
+export default AddMaintenancePage

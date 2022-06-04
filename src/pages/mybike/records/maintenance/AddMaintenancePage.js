@@ -1,9 +1,9 @@
-import * as S from './MaintenancePage.style'
+import * as S from './AddMaintenancePage.style'
 // import { useSearchParams } from 'react-router-dom'
 import PageHeader from '../../../../elements/PageHeader'
-import RecordContent from '../../../../components/mybike/records/maintenance/Maintenance'
+import RecordContent from '../../../../components/mybike/records/maintenance/AddMaintenance'
 
-const MaintenancePage = () => {
+const AddMaintenancePage = () => {
   // const [searchParams] = useSearchParams()
 
   return (
@@ -14,4 +14,4 @@ const MaintenancePage = () => {
   )
 }
 
-export default MaintenancePage
+export default AddMaintenancePage

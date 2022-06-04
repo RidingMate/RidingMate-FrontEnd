@@ -1,6 +1,6 @@
-import * as S from './Maintenance.style'
+import * as S from './AddMaintenance.style'
 // import Input from '../../elements/Input'
-import cameraIcon from '../../../../assets/icons/mybike_test/camera.png'
+import cameraIcon from '../../../../assets/icons/mybike/camera.png'
 import { useState } from 'react'
 
 const MaintenancePage = () => {

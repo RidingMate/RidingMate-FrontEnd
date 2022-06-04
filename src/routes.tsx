@@ -7,7 +7,8 @@ import SellMyBikePage from './pages/sell/Sell-MyBike'
 
 import SellMyBikeWritePage from './pages/sell/Sell-MyBike-Write'
 import MarketPage from './pages/market/Market'
-import MaintenancePage from './pages/mybike/records/maintenance/MaintenancePage'
+import AddMaintenancePage from './pages/mybike/records/maintenance/AddMaintenancePage'
+import AddRefuelingPage from './pages/mybike/records/refueling/AddRefuelingPage'
 
 const RouteList = () => {
   return (
@@ -19,7 +20,8 @@ const RouteList = () => {
       <Route path="/sell/my-bike" element={<SellMyBikePage />} />
       <Route path="/sell/my-bike/write" element={<SellMyBikeWritePage />} />
       <Route path="/market" element={<MarketPage />} />
-      <Route path="/maintenance" element={<MaintenancePage />} />
+      <Route path="/maintenance" element={<AddMaintenancePage />} />
+      <Route path="/refueling/add" element={<AddRefuelingPage />} />
       <Route path="*" element={<div>PAGE NOT FOUND</div>} />
     </Routes>
   )
