@@ -53,7 +53,9 @@ const Header = () => {
     <Wrap>
       <SubHeader>
         <div className="menu_item">HELP</div>
-        <div className="menu_item">LOGIN</div>
+        <div className="menu_item">
+          <Link to="/login">LOGIN</Link>
+        </div>
       </SubHeader>
       <MainHeader>
         <img
