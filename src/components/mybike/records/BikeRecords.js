@@ -1,26 +1,18 @@
+import * as S from './BikeRecords.style'
+import { useNavigate } from 'react-router-dom'
 import InfoBox from 'src/elements/infoBox'
 import Select from 'src/elements/select'
+import Button from 'src/elements/button'
 import { makeRangeList } from 'src/hooks/utils'
-import * as S from './BikeRecords.style'
 import FuelCard from './refuel/card'
 import MaintenanceCard from './maintenance/card'
+import bike_main_mark_img from 'src/assets/images/pages/mybike/bike_main_mark_img.svg'
 
-const BikeRecords = ({ bikeIndex, recordType }) => {
+const BikeRecords = ({ bikeIndex, pageParams }) => {
   const date = new Date()
   const nowYear = date.getFullYear()
-  const fuelInfo = recordType === 'fuel'
-
-  // 년도와 월 둘 다 적용한 리스트인데 양이 너무 많아져서 일단 주석처리 했습니다.
-  // const yearToMonthList = () => {
-  //   const temp = []
-  //   makeRangeList(2000, nowYear()).forEach((year) => {
-  //     makeRangeList(1, 12).forEach((month) => {
-  //       temp.push([year, month])
-  //       console.log(year, month)
-  //     })
-  //   })
-  //   return temp
-  // }
+  const navigate = useNavigate()
+  const isRefuelingPage = pageParams === 'refueling'
 
   return (
     <S.Wrap>
@@ -28,7 +20,7 @@ const BikeRecords = ({ bikeIndex, recordType }) => {
         <h1>내 바이크{bikeIndex}</h1>
         <p>혼다 Super Cub</p>
       </S.Header>
-      {fuelInfo && (
+      {isRefuelingPage && (
         <S.Info>
           <div className="info-head">
             <h2>연비정보</h2>
@@ -51,13 +43,13 @@ const BikeRecords = ({ bikeIndex, recordType }) => {
       )}
       <S.Record>
         <div className="record-head">
-          <h2>{fuelInfo ? '주유' : '정비'}기록</h2>
+          <h2>{isRefuelingPage ? '주유' : '정비'}기록</h2>
           <Select
             width={'130px'}
             height={'40px'}
-            defaultContent={fuelInfo ? '1월' : nowYear}
+            defaultContent={isRefuelingPage ? '1월' : `${nowYear}년`}
           >
-            {fuelInfo
+            {isRefuelingPage
               ? makeRangeList(1, 12).map((month, idx) => (
                   <option key={idx}>{month}월</option>
                 ))
@@ -67,7 +59,7 @@ const BikeRecords = ({ bikeIndex, recordType }) => {
           </Select>
         </div>
         <div className="record-announcement">
-          {fuelInfo ? (
+          {isRefuelingPage ? (
             <p>
               이번 달 총 주유량은 <b>100L</b>, 총 주유비용은 <b>123,456원</b>
               이에요.
@@ -81,43 +73,65 @@ const BikeRecords = ({ bikeIndex, recordType }) => {
       </S.Record>
       <S.Detail>
         <div className="detail-head">
-          <h2>상세 {fuelInfo ? '주유' : '정비'}기록</h2>
+          <h2>상세 {isRefuelingPage ? '주유' : '정비'}기록</h2>
           <div className="detail-head-btns">
-            {fuelInfo && <button className="refresh" />}
+            {isRefuelingPage && <button className="refresh" />}
             <button className="add" />
           </div>
         </div>
-        {fuelInfo ? (
-          <div className="detail-fuel-cards">
-            <FuelCard amount={11} price={10000} date={'1111-11-11'} />
-            <FuelCard amount={22} price={20000} date={'2222-22-22'} />
-            <FuelCard amount={33} price={30000} date={'3333-33-33'} />
+        <div className="detail-cards-wrap">
+          {isRefuelingPage ? (
+            <div className="refueling-cards">
+              <FuelCard amount={11} price={10000} date={'1111-11-11'} />
+              <FuelCard amount={22} price={20000} date={'2222-22-22'} />
+              <FuelCard amount={33} price={30000} date={'3333-33-33'} />
+            </div>
+          ) : (
+            <div className="maintanance-cards">
+              <MaintenanceCard
+                id={1}
+                serviceName={'점검1'}
+                serviceCenter={'서비스센터1'}
+                serviceCharge={11111}
+                serviceDate={'1111-11-11'}
+              />
+              <MaintenanceCard
+                id={2}
+                serviceName={'점검2'}
+                serviceCenter={'서비스센터2'}
+                serviceCharge={22222}
+                serviceDate={'2222-22-22'}
+              />
+              <MaintenanceCard
+                id={3}
+                serviceName={'점검3'}
+                serviceCenter={'서비스센터3'}
+                serviceCharge={33333}
+                serviceDate={'3333-33-33'}
+              />
+            </div>
+          )}
+        </div>
+        <div className="records-add">
+          <div className="notice">
+            {isRefuelingPage
+              ? '입력된 주유기록이 없어요 :('
+              : '입력된 기록이 없어요 :('}
           </div>
-        ) : (
-          <div className="detail-repair-cards">
-            <MaintenanceCard
-              id={1}
-              serviceName={'점검1'}
-              serviceCenter={'서비스센터1'}
-              serviceCharge={11111}
-              serviceDate={'1111-11-11'}
-            />
-            <MaintenanceCard
-              id={2}
-              serviceName={'점검2'}
-              serviceCenter={'서비스센터2'}
-              serviceCharge={22222}
-              serviceDate={'2222-22-22'}
-            />
-            <MaintenanceCard
-              id={3}
-              serviceName={'점검3'}
-              serviceCenter={'서비스센터3'}
-              serviceCharge={33333}
-              serviceDate={'3333-33-33'}
-            />
-          </div>
-        )}
+          <Button
+            width={'400px'}
+            content={
+              isRefuelingPage ? '주유기록 추가하기' : '정비기록 추가하기'
+            }
+            onClick={() =>
+              isRefuelingPage
+                ? navigate('/mybike/refueling/add')
+                : navigate('/mybike/maintenance/add')
+            }
+          >
+            <img src={bike_main_mark_img} alt="" />
+          </Button>
+        </div>
       </S.Detail>
     </S.Wrap>
   )

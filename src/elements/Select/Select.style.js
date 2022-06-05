@@ -2,8 +2,8 @@ import styled from 'styled-components'
 import btn_dropdwon_img from './btn_dropdwon_img.svg'
 
 const Select = styled.select`
-  width: ${({ width }) => width || '400px'};
-  height: 60px;
+  width: ${({ width }) => width};
+  height: ${({ height }) => height};
   padding: 0 23px;
 
   appearance: none;

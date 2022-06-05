@@ -84,7 +84,11 @@ const Record = styled.div`
 
 const Detail = styled.div`
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   .detail-head {
+    width: 100%;
     margin-bottom: 30px;
 
     display: flex;
@@ -112,17 +116,35 @@ const Detail = styled.div`
       }
     }
   }
-  .detail-fuel-cards {
-    margin-bottom: 109px;
-    & > :not(:last-child) {
-      margin-bottom: 10px;
+  .detail-cards-wrap {
+    width: 100%;
+    .refueling-cards {
+      margin-bottom: 109px;
+      & > :not(:last-child) {
+        margin-bottom: 10px;
+      }
+    }
+    .maintanance-cards {
+      margin-bottom: 213px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(440px, 100%), 1fr));
+      gap: 20px 20px;
     }
   }
-  .detail-repair-cards {
-    margin-bottom: 213px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(440px, 100%), 1fr));
-    gap: 20px 20px;
+  .records-add {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .notice {
+      margin-bottom: 15px;
+      font-size: 15px;
+      font-weight: 400;
+    }
+    button {
+      img {
+        margin-left: 7px;
+      }
+    }
   }
 `
 
