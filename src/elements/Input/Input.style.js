@@ -10,6 +10,8 @@ const MyInput = styled.input`
   background: #ffffff;
   border: 2px solid #dddddd;
   border-radius: 15px;
+
+  flex: ${({ flex }) => flex || 'none'};
 `
 
 export { Wrap, MyInput }

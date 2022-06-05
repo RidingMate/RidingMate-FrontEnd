@@ -6,7 +6,7 @@ import regist_button_bike_img from 'src/assets/images/pages/mybike/regist/regist
 import regist_button_added_img_close from 'src/assets/images/pages/mybike/regist/regist_button_added_img_close.svg'
 
 import Button from 'src/elements/button'
-import Input from 'src/elements/input'
+import Input from 'src/elements/Input'
 import Select from 'src/elements/select'
 import PageHeader from 'src/elements/pageHeader'
 import { makeRangeList } from 'src/hooks/utils'
