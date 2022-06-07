@@ -1,7 +1,5 @@
 import styled from 'styled-components'
 
-const Wrap = styled.div``
-
 const Btn = styled.button`
   width: ${({ width }) => width};
   height: 70px;
@@ -37,4 +35,4 @@ const Btn = styled.button`
   }
 `
 
-export { Wrap, Btn }
+export { Btn }

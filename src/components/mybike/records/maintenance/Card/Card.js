@@ -1,7 +1,9 @@
 import * as S from './Card.style'
 import InfoBox from 'src/elements/infoBox'
+import { Link } from 'react-router-dom'
 
 const Card = ({
+  id,
   serviceName,
   serviceCenter,
   serviceCharge,
@@ -18,10 +20,12 @@ const Card = ({
         height={'145px'}
       >
         <div className="card-pos-top">
-          <div className="service-name-center">
-            <p className="name">{serviceName}</p>
-            <p className="center">{serviceCenter}</p>
-          </div>
+          <Link to={`/mybike/records?id=${id}&type=detail`}>
+            <div className="service-name-center">
+              <p className="name">{serviceName}</p>
+              <p className="center">{serviceCenter}</p>
+            </div>
+          </Link>
           <div className="service-edit-btns">
             <button className="edit-btn" onClick={handleEdit} />
             <button className="delete-btn" onClick={handleDelete} />

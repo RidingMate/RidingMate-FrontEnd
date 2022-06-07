@@ -1,4 +1,4 @@
-import { Btn, Wrap } from './Button.style'
+import { Btn } from './Button.style'
 
 /* theme : button-black, button-grey, button-login 
 button-login은 logo props에 컴포넌트 형식으로 이미지를 넣어주면 됩니다.
@@ -18,19 +18,17 @@ const Button = ({
     onClick()
   }
   return (
-    <Wrap>
-      <Btn
-        onClick={handleClick}
-        type={type}
-        className={className}
-        theme={theme}
-        width={width}
-      >
-        <div>{logo}</div>
-        <div>{content}</div>
-        {children}
-      </Btn>
-    </Wrap>
+    <Btn
+      onClick={handleClick}
+      type={type}
+      className={className}
+      theme={theme}
+      width={width}
+    >
+      <div>{logo}</div>
+      <div>{content}</div>
+      {children}
+    </Btn>
   )
 }
 

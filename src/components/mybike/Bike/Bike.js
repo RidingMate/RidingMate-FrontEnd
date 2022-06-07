@@ -43,10 +43,10 @@ const Bike = () => {
             <b>2022-05</b>
           </InfoBox>
           <S.BikeInfosBtns>
-            <Link to={`/mybike/records?id=${bikeId}&type=fuel`}>
+            <Link to={`/mybike/records?id=${bikeId}&type=refueling`}>
               <Button width={'230px'} content={'주유기록(O)'} />
             </Link>
-            <Link to={`/mybike/records?id=${bikeId}&type=repair`}>
+            <Link to={`/mybike/records?id=${bikeId}&type=maintenance`}>
               <Button width={'230px'} content={'정비기록(O)'} />
             </Link>
           </S.BikeInfosBtns>
