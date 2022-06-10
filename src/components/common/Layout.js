@@ -10,10 +10,12 @@ const Layout = (props) => {
   const { children } = props
 
   return (
-    <Wrap>
-      <Header />
-      {children}
-    </Wrap>
+    <>
+      <Wrap>
+        <Header />
+        {children}
+      </Wrap>
+    </>
   )
 }
 
