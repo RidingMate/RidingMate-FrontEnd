@@ -14,6 +14,7 @@ import MyBikeListPage from './pages/mybike/list'
 import MyBikeRegistPage from './pages/mybike/regist'
 import LoginPage from './pages/users/Login'
 import SignUpPage from './pages/users/SignUp'
+import MyPage from './pages/mypage/MyPage'
 
 const RouteList = () => {
   return (
@@ -21,7 +22,6 @@ const RouteList = () => {
       <Route path="/" element={<MainPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/signup" element={<SignUpPage />} />
-
       <Route path="/product/*" element={<MarketDetail />} />
       <Route path="/mybike" element={<MyBikeListPage />} />
       <Route path="/mybike/regist" element={<MyBikeRegistPage />} />
@@ -33,6 +33,8 @@ const RouteList = () => {
       <Route path="/sell/mybike/write" element={<SellMyBikeWritePage />} />
       <Route path="/sell/newbike/write" element={<SellNewBikeWritePage />} />
       <Route path="/market" element={<MarketPage />} />
+      <Route path="/mypage" element={<MyPage />} />
+
       <Route path="*" element={<div>PAGE NOT FOUND</div>} />
     </Routes>
   )

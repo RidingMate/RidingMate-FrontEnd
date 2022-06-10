@@ -75,7 +75,9 @@ const Header = () => {
           <div className="menu_item">
             <Link to="/mybike">MY BIKE</Link>
           </div>
-          <div className="menu_item">MY PAGE</div>
+          <div className="menu_item">
+            <Link to="/mypage">MY PAGE</Link>
+          </div>
         </div>
       </MainHeader>
     </Wrap>
