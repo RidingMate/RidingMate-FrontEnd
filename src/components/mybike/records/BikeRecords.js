@@ -50,12 +50,8 @@ const BikeRecords = ({ bikeIndex, pageParams }) => {
             defaultContent={isRefuelingPage ? '1월' : `${nowYear}년`}
           >
             {isRefuelingPage
-              ? makeRangeList(1, 12).map((month, idx) => (
-                  <option key={idx}>{month}월</option>
-                ))
-              : makeRangeList(2000, nowYear).map((year, idx) => (
-                  <option key={idx}>{year}년</option>
-                ))}
+              ? makeRangeList(1, 12)
+              : makeRangeList(2000, nowYear, true)}
           </Select>
         </div>
         <div className="record-announcement">

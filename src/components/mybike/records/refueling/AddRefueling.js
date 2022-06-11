@@ -5,7 +5,7 @@ import select_arrow from '../../../../assets/icons/mybike/select_arrow.png'
 
 const MaintenancePage = () => {
   const now = new Date()
-  const year = now.getFullYear()
+  // const year = now.getFullYear()
   const month = now.getMonth()
   const date = now.getDate()
 
@@ -26,7 +26,7 @@ const MaintenancePage = () => {
       label_year.innerHTML = item.textContent
     }
     // 옵션 클릭시 클릭한 옵션을 넘김
-    optionItem_year.forEach((option, index) => {
+    optionItem_year.forEach((option) => {
       option.addEventListener('click', () => handleSelect(option))
     })
 
@@ -55,11 +55,18 @@ const MaintenancePage = () => {
                 <div className="select_box month">
                   <div className="btn_wrap">
                     <button className="label label_month">{month}</button>
-                    <img className="select_arrow" alt="select_arrow" src={select_arrow} />
+                    <img
+                      className="select_arrow"
+                      alt="select_arrow"
+                      src={select_arrow}
+                    />
                     <ul className="optionList">
                       {Array.from({ length: 12 }).map((item, idx) => {
                         return (
-                          <li key={String(idx)} className="optionItem optionItem_month">
+                          <li
+                            key={String(idx)}
+                            className="optionItem optionItem_month"
+                          >
                             {idx + 1}
                           </li>
                         )
@@ -73,7 +80,11 @@ const MaintenancePage = () => {
                 <div className="select_box date">
                   <div className="btn_wrap">
                     <button className="label label_date">{date}</button>
-                    <img className="select_arrow" alt="select_arrow" src={select_arrow} />
+                    <img
+                      className="select_arrow"
+                      alt="select_arrow"
+                      src={select_arrow}
+                    />
                     {/* <ul className="optionList">
                       {Array.from({ length: 30 }).map((item, idx) => {
                         return (

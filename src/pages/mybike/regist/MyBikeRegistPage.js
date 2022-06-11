@@ -13,6 +13,7 @@ import { makeRangeList } from 'src/hooks/utils'
 
 const MyBikeRegistPage = () => {
   const [imgSrc, setImgSrc] = useState()
+  // const ref = useRef()
   const formData = new FormData()
   const fileReader = new FileReader()
   const date = new Date()
@@ -43,10 +44,12 @@ const MyBikeRegistPage = () => {
     formData.append('purchase_year', e.target.purchase_year.value)
     formData.append('purchase_month', e.target.purchase_month.value)
     formData.append('isMain', e.target.isMain.checked)
+    // formData.append('test', ref.current.innerHTML)
+    // formData.forEach((key, value) => console.log(key, value))
   }
-
   return (
     <S.Wrap>
+      {/* <li ref={ref}>123</li> */}
       <PageHeader main_title={'MY BIKE'} sub_title={'내 바이크'} />
       <S.Form onSubmit={handleSubmit}>
         <S.Head>새 바이크 등록하기</S.Head>
@@ -59,8 +62,8 @@ const MyBikeRegistPage = () => {
             <input
               onChange={handleChange}
               type="file"
-              name="images"
               id="uploader"
+              name="images"
               accept="image/jpg,impge/png,image/jpeg"
               style={{ display: 'none' }}
             />
@@ -91,17 +94,13 @@ const MyBikeRegistPage = () => {
 
           <S.Category>제조사</S.Category>
           <Select name={'manufacture'} defaultContent={'선택하세요'}>
-            <option value="manufacture-option">manufacturing company1</option>
-            <option value="manufacture-option">manufacturing company1</option>
+            {['제조사1', '제조사2']}
           </Select>
 
           <S.Category>모델명</S.Category>
-          <S.Div>
-            <Select name={'model'} defaultContent={'선택하세요'}>
-              <option value="model-option">model1</option>
-              <option value="model-option">model2</option>
-            </Select>
-          </S.Div>
+          <Select name={'model'} defaultContent={'선택하세요'}>
+            {['모델1', '모델2']}
+          </Select>
 
           <S.Div></S.Div>
           <S.P fontSize={'12px'} top={'-10px'} left={'10px'}>
@@ -113,13 +112,11 @@ const MyBikeRegistPage = () => {
 
           <S.Category>연식</S.Category>
           <Select name={'year'} defaultContent={'선택하세요'}>
-            {makeRangeList(1990, date.getFullYear()).map((data, idx) => (
-              <option key={idx}>{data}년</option>
-            ))}
+            {makeRangeList(1990, date.getFullYear(), 1, true)}
           </Select>
 
           <S.Category>누적 주행거리(km)</S.Category>
-          <Input type={'text'} name={'mileage'} placeholder={'입력하세요'} />
+          <Input name={'mileage'} type={'text'} placeholder={'입력하세요'} />
 
           <S.Category>구매일자</S.Category>
           <S.Div justifyContent={'space-between'} alignItems={'center'}>
@@ -128,9 +125,7 @@ const MyBikeRegistPage = () => {
               defaultContent={'선택하세요'}
               width={'170px'}
             >
-              {makeRangeList(1990, date.getFullYear()).map((data, idx) => (
-                <option key={idx}>{data}년</option>
-              ))}
+              {makeRangeList(1990, date.getFullYear(), 1, true)}
             </Select>
             년
             <Select
@@ -138,9 +133,7 @@ const MyBikeRegistPage = () => {
               width={'170px'}
               defaultContent={'선택하세요'}
             >
-              {makeRangeList(1, 12).map((data, idx) => (
-                <option key={idx}>{data}월</option>
-              ))}
+              {makeRangeList(1, 12)}
             </Select>
             월
           </S.Div>
@@ -148,7 +141,7 @@ const MyBikeRegistPage = () => {
 
         <S.RegistSection>
           <span>이 바이크를 대표 바이크로 설정</span>
-          <S.CheckBox type="checkbox" name="isMain" />
+          <S.CheckBox name="isMain" type="checkbox" />
         </S.RegistSection>
         <Button content={'등록하기'} type={'submit'} />
       </S.Form>
