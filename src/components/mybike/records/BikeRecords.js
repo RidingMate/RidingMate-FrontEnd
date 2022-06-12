@@ -45,6 +45,7 @@ const BikeRecords = ({ bikeIndex, pageParams }) => {
         <div className="record-head">
           <h2>{isRefuelingPage ? '주유' : '정비'}기록</h2>
           <Select
+            className="month-selector"
             width={'130px'}
             height={'40px'}
             defaultContent={isRefuelingPage ? '1월' : `${nowYear}년`}

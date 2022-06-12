@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import React, { useEffect } from 'react'
 import * as S from './Select.style'
 
 const Select = ({
@@ -9,55 +9,81 @@ const Select = ({
   className,
   name,
 }) => {
-  // console.log(list)
-  // // console.log(list.parentNode.parentNode)
-  // // select_box.forEach((el) => {
-  // //   // el.addEventListener('click', handleOpen)
-  // //   console.log(el)
-  // // })
+  useEffect(() => {
+    const inputs = document.querySelectorAll('.input')
 
-  // const [open, setOpen] = useState(false)
-  // const dropdownRef = useRef()
+    inputs.forEach((input) => {
+      input.addEventListener('click', () => {
+        const list = input.nextElementSibling
+        const items = list.querySelectorAll('.option-item')
+        clickLabel(input, items)
+      })
+    })
 
-  // const handleClose = (e) => {
-  //   if (open) {
-  //     console.log('ref: ', dropdownRef.current.contains(e.target))
-  //     console.log('e.target: ', e.target)
-  //   }
-  //   // if (open && !dropdownRef.current.contains(e.target)) {
-  //   //   console.log('click')
-  //   // }
-  // }
+    const clickLabel = (input, items) => {
+      inputs.forEach((clickInput) => {
+        if (input !== clickInput) {
+          clickInput.parentNode.classList.remove('active')
+        }
+      })
 
-  // const list_item = document.querySelector('.list-item')
-  const [open, setOpen] = useState(false)
-  const listRef = useRef()
+      if (input.parentNode.classList.contains('active')) {
+        input.parentNode.classList.remove('active')
+        items.forEach((item) => {
+          item.removeEventListener('click', () => {
+            handleSelect(input, item)
+          })
+        })
+      } else {
+        input.parentNode.classList.add('active')
+        items.forEach((item) => {
+          item.addEventListener('click', () => {
+            handleSelect(input, item)
+          })
+        })
+      }
+    }
 
-  const handleOpen = () => setOpen(!open)
+    const handleSelect = (input, item) => {
+      input.innerHTML = item.textContent
+      input.parentNode.classList.remove('active')
+    }
 
-  // select_box.forEach((el) => console.log(el))
+    const handleClose = (e) => {
+      if (
+        !e.target.classList.contains('input') &&
+        !e.target.classList.contains('option-item')
+      ) {
+        inputs.forEach((input) => {
+          input.parentNode.classList.remove('active')
+        })
+      }
+    }
+
+    window.addEventListener('click', (e) => handleClose(e))
+
+    return () => window.removeEventListener('click', (e) => handleClose(e))
+  }, [])
 
   return (
-    <S.Wrap className={className}>
-      <S.Select
-        className="select-box"
-        placeholder={defaultContent}
-        width={width}
-        height={height}
-        name={name}
-        onClick={handleOpen}
-      />
-      <S.Dropdown className="dropdown-list" open={open} ref={listRef}>
-        <ul>
+    <S.Container className={className}>
+      <S.Wrap width={width} height={height}>
+        <input
+          className="input"
+          placeholder={defaultContent}
+          readOnly
+          name={name}
+        />
+        <ul className="dropdown">
           {children.map((data, idx) => (
-            <li className="list-item" key={idx}>
+            <li className="option-item" key={idx}>
               {data}
             </li>
           ))}
         </ul>
-      </S.Dropdown>
-    </S.Wrap>
+      </S.Wrap>
+    </S.Container>
   )
 }
 
-export default Select
+export default React.memo(Select)

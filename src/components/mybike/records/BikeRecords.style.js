@@ -65,7 +65,7 @@ const Record = styled.div`
   .record-head {
     display: flex;
     justify-content: space-between;
-    select {
+    .month-selector {
       margin-top: 20px;
       margin-bottom: 55px;
     }
