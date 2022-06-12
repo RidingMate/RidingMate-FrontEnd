@@ -10,23 +10,29 @@ const Select = ({
   name,
 }) => {
   useEffect(() => {
+    // 모든 .input div 선택
     const inputs = document.querySelectorAll('.input')
 
     inputs.forEach((input) => {
       input.addEventListener('click', () => {
-        const list = input.nextElementSibling
+        const list = input.nextElementSibling // input 다음에 있는 element -> dropdown
         const items = list.querySelectorAll('.option-item')
-        clickLabel(input, items)
+        clickInput(input, items) // 각각의 input과 그에 따른 items(options)들
       })
     })
-
-    const clickLabel = (input, items) => {
+    // input을 클릭하면 실행되는 함수
+    // 클릭한 input /items(dropdown options)
+    const clickInput = (input, items) => {
       inputs.forEach((clickInput) => {
+        /* 다른 select 눌렀을 때 처리*/
+        // 위의 forEach에서 클릭한 input과 clickInput 함수 안에서
+        // 클릭한 Input이 다르면 active 클래스 제거
         if (input !== clickInput) {
           clickInput.parentNode.classList.remove('active')
         }
       })
 
+      // input.parentNode : .input과 .dropdown을 감싸고 있는 부모 노드
       if (input.parentNode.classList.contains('active')) {
         input.parentNode.classList.remove('active')
         items.forEach((item) => {
@@ -45,6 +51,8 @@ const Select = ({
     }
 
     const handleSelect = (input, item) => {
+      // list의 item을 클릭하면 input의 innerHTML에 선택한 items을 넣는다
+      // 그리고 active 클래스 제거
       input.innerHTML = item.textContent
       input.parentNode.classList.remove('active')
     }
@@ -59,7 +67,7 @@ const Select = ({
         })
       }
     }
-
+    // 외부 클릭했을때 dropdown리스트 close처리
     window.addEventListener('click', (e) => handleClose(e))
 
     return () => window.removeEventListener('click', (e) => handleClose(e))
