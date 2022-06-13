@@ -53,7 +53,8 @@ const Select = ({
     const handleSelect = (input, item) => {
       // list의 item을 클릭하면 input의 innerHTML에 선택한 items을 넣는다
       // 그리고 active 클래스 제거
-      input.innerHTML = item.textContent
+      // input.setAttribute('placeholder', item.textContent)
+      input.setAttribute('value', item.textContent)
       input.parentNode.classList.remove('active')
     }
 

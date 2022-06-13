@@ -44,12 +44,9 @@ const MyBikeRegistPage = () => {
     formData.append('purchase_year', e.target.purchase_year.value)
     formData.append('purchase_month', e.target.purchase_month.value)
     formData.append('isMain', e.target.isMain.checked)
-    // formData.append('test', ref.current.innerHTML)
-    // formData.forEach((key, value) => console.log(key, value))
   }
   return (
     <S.Wrap>
-      {/* <li ref={ref}>123</li> */}
       <PageHeader main_title={'MY BIKE'} sub_title={'내 바이크'} />
       <S.Form onSubmit={handleSubmit}>
         <S.Head>새 바이크 등록하기</S.Head>
