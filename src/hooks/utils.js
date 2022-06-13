@@ -7,10 +7,16 @@
 // ))}
 // </Select>
 
-export function makeRangeList(start, end, diff = 1) {
+export function makeRangeList(start, end, diff = 1, reverse = false) {
   const list = []
-  for (let i = start; i <= end; i += diff) {
-    list.push(i)
+  if (reverse) {
+    for (let i = end; i >= start; i -= diff) {
+      list.push(i)
+    }
+  } else {
+    for (let i = start; i <= end; i += diff) {
+      list.push(i)
+    }
   }
   return list
 }

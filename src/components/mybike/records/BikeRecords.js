@@ -45,17 +45,14 @@ const BikeRecords = ({ bikeIndex, pageParams }) => {
         <div className="record-head">
           <h2>{isRefuelingPage ? '주유' : '정비'}기록</h2>
           <Select
+            className="month-selector"
             width={'130px'}
             height={'40px'}
             defaultContent={isRefuelingPage ? '1월' : `${nowYear}년`}
           >
             {isRefuelingPage
-              ? makeRangeList(1, 12).map((month, idx) => (
-                  <option key={idx}>{month}월</option>
-                ))
-              : makeRangeList(2000, nowYear).map((year, idx) => (
-                  <option key={idx}>{year}년</option>
-                ))}
+              ? makeRangeList(1, 12)
+              : makeRangeList(2000, nowYear, true)}
           </Select>
         </div>
         <div className="record-announcement">
