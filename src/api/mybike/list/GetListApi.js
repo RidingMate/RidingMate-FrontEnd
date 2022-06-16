@@ -1,8 +1,10 @@
-import API_URL from 'src/api/api.config'
+// import targetUrl from 'src/api/api.config'
+import targetUrl from 'src/api/api.config'
 import customAxios from 'src/hooks/customAxios'
 
-export const getBikeList = async () => {
-  console.log(API_URL.BIKE_GET_LIST)
-  const data = await customAxios.get(API_URL.BIKE_GET_LIST)
-  return data
+const getBikeList = async () => {
+  const response = await customAxios.get(targetUrl.BIKE_GET_LIST)
+  return response.data
 }
+
+export { getBikeList }
