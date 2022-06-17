@@ -8,10 +8,8 @@ import { getBikeList } from 'src/api/mybike/list/GetListApi'
 
 const MyBikeListPage = ({ myBikeList = [1, 2] }) => {
   const navigate = useNavigate()
-  // 아래 custom해서 만든 getBikeList를
-  // react-query로 이용하면 될 것 같습니다.
-  const response = getBikeList() // : Promise<AxiosResponse>
-  console.log(response)
+  const data = getBikeList()
+  console.log(data)
   return (
     <S.Wrap>
       <S.Title>
