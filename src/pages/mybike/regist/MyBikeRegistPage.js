@@ -10,11 +10,11 @@ import Input from 'src/elements/Input'
 import Select from 'src/elements/select'
 import PageHeader from 'src/elements/pageHeader'
 import { makeRangeList } from 'src/hooks/utils'
+import { registBike } from 'src/api/mybike/list/RegistBike'
 
 const MyBikeRegistPage = () => {
   const [imgSrc, setImgSrc] = useState()
-  // const ref = useRef()
-  const formData = new FormData()
+  const imageData = new FormData()
   const fileReader = new FileReader()
   const date = new Date()
 
@@ -29,21 +29,28 @@ const MyBikeRegistPage = () => {
   }
 
   const handleDelete = () => {
-    formData.delete('images')
+    imageData.delete('images')
     setImgSrc()
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    formData.append('images', e.target.images.files[0])
-    formData.append('nickname', e.target.nickname.value)
-    formData.append('manufacture', e.target.manufacture.value)
-    formData.append('model', e.target.model.value)
-    formData.append('year', e.target.year.value)
-    formData.append('mileage', e.target.mileage.value)
-    formData.append('purchase_year', e.target.purchase_year.value)
-    formData.append('purchase_month', e.target.purchase_month.value)
-    formData.append('isMain', e.target.isMain.checked)
+
+    const query = {
+      bikeNickName: e.target.bikeNickName.value,
+      bikeRole: e.target.bikeRole.checked ? 'representative' : 'normal',
+      company: e.target.company.value,
+      dateOfPurchase: `${e.target.purchase_year.value}-${String(
+        e.target.purchase_month.value
+      ).padStart(2, '0')}-01`,
+      mileage: e.target.mileage.value,
+      model: e.target.model.value,
+      year: e.target.year.value,
+    }
+
+    imageData?.append('file', e.target.file.files[0])
+
+    registBike(imageData, query)
   }
   return (
     <S.Wrap>
@@ -60,8 +67,8 @@ const MyBikeRegistPage = () => {
               onChange={handleChange}
               type="file"
               id="uploader"
-              name="images"
-              accept="image/jpg,impge/png,image/jpeg"
+              name="file"
+              accept="image/jpg,image/png,image/jpeg"
               style={{ display: 'none' }}
             />
             {imgSrc ? (
@@ -87,16 +94,20 @@ const MyBikeRegistPage = () => {
           </S.Div>
 
           <S.Category>바이크 별칭</S.Category>
-          <Input type={'text'} name={'nickname'} placeholder={'내 바이크 1'} />
+          <Input
+            type={'text'}
+            name={'bikeNickName'}
+            placeholder={'내 바이크 1'}
+          />
 
           <S.Category>제조사</S.Category>
-          <Select name={'manufacture'} defaultContent={'선택하세요'}>
-            {['제조사1', '제조사2']}
+          <Select name={'company'} defaultContent={'선택하세요'}>
+            {['honda', 'honda']}
           </Select>
 
           <S.Category>모델명</S.Category>
           <Select name={'model'} defaultContent={'선택하세요'}>
-            {['모델1', '모델2']}
+            {['model1', 'model2']}
           </Select>
 
           <S.Div></S.Div>
@@ -138,7 +149,7 @@ const MyBikeRegistPage = () => {
 
         <S.RegistSection>
           <span>이 바이크를 대표 바이크로 설정</span>
-          <S.CheckBox name="isMain" type="checkbox" />
+          <S.CheckBox name="bikeRole" type="checkbox" />
         </S.RegistSection>
         <Button content={'등록하기'} type={'submit'} />
       </S.Form>
