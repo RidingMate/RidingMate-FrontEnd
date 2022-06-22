@@ -42,7 +42,7 @@ const MyBikeRegistPage = () => {
       company: e.target.company.value,
       dateOfPurchase: `${e.target.purchase_year.value}-${String(
         e.target.purchase_month.value
-      ).padStart(2, '0')}-01`,
+      ).padStart(2, '0')}-01`, // 2022-04-01형식으로 변환하는 작업
       mileage: e.target.mileage.value,
       model: e.target.model.value,
       year: e.target.year.value,
