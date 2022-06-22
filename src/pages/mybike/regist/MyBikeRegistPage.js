@@ -10,13 +10,15 @@ import Input from 'src/elements/Input'
 import Select from 'src/elements/select'
 import PageHeader from 'src/elements/pageHeader'
 import { makeRangeList } from 'src/hooks/utils'
-import { registBike } from 'src/api/mybike/list/RegistBike'
 
 const MyBikeRegistPage = () => {
   const [imgSrc, setImgSrc] = useState()
   const imageData = new FormData()
   const fileReader = new FileReader()
   const date = new Date()
+
+  const companies = customAxios('get', URL.GET_COMPANY_LIST)
+  console.log(companies)
 
   const handleChange = (e) => {
     if (e.target.files.length) {
@@ -36,21 +38,20 @@ const MyBikeRegistPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    const query = {
-      bikeNickName: e.target.bikeNickName.value,
-      bikeRole: e.target.bikeRole.checked ? 'representative' : 'normal',
-      company: e.target.company.value,
-      dateOfPurchase: `${e.target.purchase_year.value}-${String(
-        e.target.purchase_month.value
-      ).padStart(2, '0')}-01`, // 2022-04-01형식으로 변환하는 작업
-      mileage: e.target.mileage.value,
-      model: e.target.model.value,
-      year: e.target.year.value,
-    }
+    // 나중에 query와 imageData POST
+    // const query = {
+    //   bikeNickName: e.target.bikeNickName.value,
+    //   bikeRole: e.target.bikeRole.checked ? 'representative' : 'normal',
+    //   company: e.target.company.value,
+    //   dateOfPurchase: `${e.target.purchase_year.value}-${String(
+    //     e.target.purchase_month.value
+    //   ).padStart(2, '0')}-01`, // 2022-04-01형식으로 변환하는 작업
+    //   mileage: e.target.mileage.value,
+    //   model: e.target.model.value,
+    //   year: e.target.year.value,
+    // }
 
-    imageData?.append('file', e.target.file.files[0])
-
-    registBike(imageData, query)
+    // imageData?.append('file', e.target.file.files[0])
   }
   return (
     <S.Wrap>

@@ -4,12 +4,16 @@ import * as S from './MyBikeListPage.style'
 import Button from 'src/elements/button/Button'
 import BikeList from 'src/components/mybike/list'
 import PageHeader from 'src/elements/pageHeader'
-// import { getBikeList } from 'src/api/mybike/list/GetListApi'
+
+import URL from 'src/api/api.config'
+import bikeControllerAPI from 'src/api/BikeControllerAPI'
 
 const MyBikeListPage = ({ myBikeList = [1, 2] }) => {
   const navigate = useNavigate()
-  // const data = getBikeList()
-  // console.log(data)
+
+  const data = bikeControllerAPI('get', URL.BIKE_GET_LIST)
+  console.log(data)
+
   return (
     <S.Wrap>
       <S.Title>
