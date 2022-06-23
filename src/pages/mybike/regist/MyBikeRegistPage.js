@@ -13,28 +13,36 @@ import { makeRangeList } from 'src/hooks/utils'
 import useBikeController from 'src/hooks/useBikeController'
 
 const MyBikeRegistPage = () => {
-  const [imgSrc, setImgSrc] = useState()
-  const imageData = new FormData()
-  const fileReader = new FileReader()
   const date = new Date()
 
-  const { companyList } = useBikeController()
-  console.log(companyList)
+  /* image form data */
+  const [file, setFile] = useState('')
+  let fileReader = new FileReader()
+
+  const fileFormData = new FormData()
 
   const handleChange = (e) => {
-    if (e.target.files.length) {
-      const imgTarget = e.target.files[0]
-      fileReader.readAsDataURL(imgTarget)
-      fileReader.onload = function (e) {
-        setImgSrc(e.target.result)
+    e.preventDefault()
+
+    const image = e.target.files[0]
+
+    if (image) {
+      fileReader.readAsDataURL(image)
+
+      fileReader.onloadend = () => {
+        setFile(fileReader.result)
+        e.target.value = ''
       }
     }
   }
 
   const handleDelete = () => {
-    imageData.delete('images')
-    setImgSrc()
+    fileFormData.delete('images')
+    setFile('')
   }
+
+  const { companyList } = useBikeController()
+  const companyListArray = Array.from(companyList, (value) => value.content)
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -61,7 +69,7 @@ const MyBikeRegistPage = () => {
         <S.Head>새 바이크 등록하기</S.Head>
         <S.Grid>
           <S.Category>
-            <div>이미지({imgSrc ? '1' : '0'}/1)</div>
+            <div>이미지({file ? '1' : '0'}/1)</div>
             <div>선택사항</div>
           </S.Category>
           <S.Div>
@@ -73,8 +81,8 @@ const MyBikeRegistPage = () => {
               accept="image/jpg,image/png,image/jpeg"
               style={{ display: 'none' }}
             />
-            {imgSrc ? (
-              <S.Thumbnail src={imgSrc} alt="bike_image">
+            {file ? (
+              <S.Thumbnail src={file} alt="bike_image">
                 <S.Btn
                   src={regist_button_added_img_close}
                   onClick={handleDelete}
@@ -104,7 +112,7 @@ const MyBikeRegistPage = () => {
 
           <S.Category>제조사</S.Category>
           <Select name={'company'} defaultContent={'선택하세요'}>
-            {['honda', 'honda']}
+            {companyListArray}
           </Select>
 
           <S.Category>모델명</S.Category>

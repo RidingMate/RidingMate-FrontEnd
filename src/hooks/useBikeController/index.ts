@@ -5,6 +5,10 @@ import queryKeys from './queryKeys'
 
 const useBikeController = () => {
   // const queryClient = useQueryClient()
+  const options = {
+    enabled: true,
+    refetchOnWindowFocus: false,
+  }
   const companyListQuery = useQuery(
     queryKeys.companies,
     () =>
@@ -12,13 +16,13 @@ const useBikeController = () => {
         method: 'get',
         url: URL.GET_COMPANY_LIST,
       }),
-    { enabled: true }
+    options
   )
 
   return {
-    companyList: companyListQuery.isSuccess && companyListQuery.data,
+    companyList:
+      companyListQuery.isSuccess && companyListQuery.data.data.response,
   }
 }
 
 export default useBikeController
-// const { bikeList } = useBikeController('get', URL.GET_COMPANY_LIST)
