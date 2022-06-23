@@ -10,6 +10,7 @@ import Input from 'src/elements/Input'
 import Select from 'src/elements/select'
 import PageHeader from 'src/elements/pageHeader'
 import { makeRangeList } from 'src/hooks/utils'
+import useBikeController from 'src/hooks/useBikeController'
 
 const MyBikeRegistPage = () => {
   const [imgSrc, setImgSrc] = useState()
@@ -17,8 +18,8 @@ const MyBikeRegistPage = () => {
   const fileReader = new FileReader()
   const date = new Date()
 
-  const companies = customAxios('get', URL.GET_COMPANY_LIST)
-  console.log(companies)
+  const { companyList } = useBikeController()
+  console.log(companyList)
 
   const handleChange = (e) => {
     if (e.target.files.length) {

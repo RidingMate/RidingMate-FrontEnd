@@ -1,50 +1,49 @@
-import axios, { AxiosRequestConfig, Method } from 'axios'
+import axios, { AxiosResponse, Method } from 'axios'
 
-const bikeControllerAPI = async <T>(
-  method: Method,
-  url: string,
-  id?: number | number[],
-  data?: T, // any
-  config?: AxiosRequestConfig
-) => {
+export interface bikeControllerAPIProps {
+  method: Method
+  url: string
+  id?: number | number[]
+  data?: FormData
+  config?: object
+}
+
+const bikeControllerAPI = async ({
+  method,
+  url,
+  id,
+  data,
+  config,
+}: bikeControllerAPIProps): Promise<AxiosResponse | undefined> => {
   const baseAxios = axios.create({
     headers: {
-      // 일단 임시적으로 제 swagger 개인 api key를 넣었습니다.
       Authorization:
         'Bearer eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWR4IjoxMywiaXNTb2NpYWxVc2VyIjpmYWxzZSwic3ViIjoidGVzdDYyMCIsImlhdCI6MTY1NTg3OTgzNywiZXhwIjoxNjYzNjU1ODM3fQ.kHuFMUor8a0I47JvfOJ8bivdCuXR6SmhXr6EWPUZuAeJ9QACooVEQrAFZonqRPb0gV-IXiFvXYXw6QCdhn3nPQ',
       accept: '*/*',
     },
   })
 
-  switch (method) {
-    case 'get' || 'GET':
-      let res
-      const reqUrl = url
-      // id가 있을 때
-      if (id) {
-        // 그 id가 1개일 때
-        if (typeof id === 'undefined') {
-          res = await baseAxios.get(`${url}/${id}`)
-        }
-        // 그 id가 여러 개일 때
-        else if (typeof id === 'object') {
-          id.forEach((id) => reqUrl.concat(`/${id}`))
-          res = await baseAxios.get(reqUrl)
-        }
-      } else res = await baseAxios.get(url)
-      return res
+  try {
+    switch (method) {
+      case 'get' || 'GET':
+        if (id) return await baseAxios.get(`${url}/${id}`, config)
+        else return await baseAxios.get(url, config)
 
-    case 'post' || 'POST':
-      return await baseAxios.post(url, data, config)
+      case 'post' || 'POST':
+        return await baseAxios.post(url, data, config)
 
-    case 'put' || 'PUT':
-      console.log('put method')
+      case 'put' || 'PUT':
+        return await baseAxios.put(url, data, config)
 
-    case 'delete' || 'DELETE':
-      console.log('delete method')
+      case 'delete' || 'DELETE':
+        if (id) return await baseAxios.get(`${url}/${id}`)
+        else return await baseAxios.get(url)
 
-    default:
-      console.log('method error')
+      default:
+        console.log('method error')
+    }
+  } catch (error) {
+    console.log(' bikeControllerAPI error!', error)
   }
 }
 
