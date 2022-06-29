@@ -35,18 +35,28 @@ const MyBikeRegistPage = () => {
       }
     }
   }
-
   const handleDelete = () => {
     fileFormData.delete('images')
     setFile('')
   }
-
-  const { companyList } = useBikeController()
+  const [selectedCompany, setSelectedCompany] = useState(null)
+  const { companyList, useModelsByCompany } = useBikeController(null)
   const companyListArray = Array.from(companyList, (value) => value.content)
+  const { data, isSuccess } = useModelsByCompany(selectedCompany)
+  const modelArrayList = isSuccess
+    ? Array.from(data.data.response, (value) => value.content)
+    : []
+
+  const clickCompany = (e) => {
+    setSelectedCompany(e.target.innerHTML)
+  }
+
+  const clickButton = () => {
+    console.log(modelArrayList)
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-
     // 나중에 query와 imageData POST
     // const query = {
     //   bikeNickName: e.target.bikeNickName.value,
@@ -64,6 +74,7 @@ const MyBikeRegistPage = () => {
   }
   return (
     <S.Wrap>
+      <button onClick={clickButton}>clikk</button>
       <PageHeader main_title={'MY BIKE'} sub_title={'내 바이크'} />
       <S.Form onSubmit={handleSubmit}>
         <S.Head>새 바이크 등록하기</S.Head>
@@ -111,13 +122,18 @@ const MyBikeRegistPage = () => {
           />
 
           <S.Category>제조사</S.Category>
-          <Select name={'company'} defaultContent={'선택하세요'}>
+          <Select
+            name={'company'}
+            defaultContent={'선택하세요'}
+            onClick={clickCompany}
+          >
             {companyListArray}
           </Select>
 
           <S.Category>모델명</S.Category>
           <Select name={'model'} defaultContent={'선택하세요'}>
-            {['model1', 'model2']}
+            {modelArrayList}
+            {/* {['제조사 없어']} */}
           </Select>
 
           <S.Div></S.Div>

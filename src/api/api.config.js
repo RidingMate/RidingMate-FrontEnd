@@ -4,7 +4,7 @@ const URL = {
   BIKE_ADD: `${process.env.BASE_URL}/v1/bike/add`,
   BIKE_UPDATE: `${process.env.BASE_URL}/v1/bike/update`,
   // DELETE
-  BIKE_DELETE: `${process.env.BASE_URL}/v1/bike/delete/`,
+  BIKE_DELETE: `${process.env.BASE_URL}/v1/bike/delete`,
   // POST
   BIKE_REGIST: `${process.env.BASE_URL}/v1/bike/insert`,
   // GET

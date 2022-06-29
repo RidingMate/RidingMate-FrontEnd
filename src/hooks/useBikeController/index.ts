@@ -1,7 +1,7 @@
 import { useQuery } from 'react-query'
 import URL from 'src/api/api.config'
 import bikeControllerAPI from 'src/api/BikeControllerAPI'
-import queryKeys from './queryKeys'
+// import queryKeys from './queryKeys'
 
 const useBikeController = () => {
   // const queryClient = useQueryClient()
@@ -9,8 +9,9 @@ const useBikeController = () => {
     enabled: true,
     refetchOnWindowFocus: false,
   }
+
   const companyListQuery = useQuery(
-    queryKeys.companies,
+    [{ scope: 'companies' }] as const,
     () =>
       bikeControllerAPI({
         method: 'get',
@@ -19,9 +20,23 @@ const useBikeController = () => {
     options
   )
 
+  const useModelsByCompany = (company: string | undefined) => {
+    return useQuery(
+      [{ scope: 'models' }, company] as const,
+      () =>
+        bikeControllerAPI({
+          method: 'get',
+          url: URL.SEARCH_MODEL,
+          company: company,
+        }),
+      { ...options, enabled: typeof company === 'string' ? true : false }
+    )
+  }
+
   return {
     companyList:
       companyListQuery.isSuccess && companyListQuery.data.data.response,
+    useModelsByCompany,
   }
 }
 

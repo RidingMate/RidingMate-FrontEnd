@@ -3,17 +3,15 @@ import axios, { AxiosResponse, Method } from 'axios'
 export interface bikeControllerAPIProps {
   method: Method
   url: string
-  id?: number | number[]
   data?: FormData
-  config?: object
+  company?: string
 }
 
 const bikeControllerAPI = async ({
   method,
   url,
-  id,
   data,
-  config,
+  company,
 }: bikeControllerAPIProps): Promise<AxiosResponse | undefined> => {
   const baseAxios = axios.create({
     headers: {
@@ -26,18 +24,18 @@ const bikeControllerAPI = async ({
   try {
     switch (method) {
       case 'get' || 'GET':
-        if (id) return await baseAxios.get(`${url}/${id}`, config)
-        else return await baseAxios.get(url, config)
+        if (company) return await baseAxios.get(`${url}?company=${company}`)
+        else return await baseAxios.get(url)
 
       case 'post' || 'POST':
-        return await baseAxios.post(url, data, config)
+        return await baseAxios.post(url, data)
 
-      case 'put' || 'PUT':
-        return await baseAxios.put(url, data, config)
+      // case 'put' || 'PUT':
+      //   return await baseAxios.put(url, data)
 
-      case 'delete' || 'DELETE':
-        if (id) return await baseAxios.get(`${url}/${id}`)
-        else return await baseAxios.get(url)
+      // case 'delete' || 'DELETE':
+      //   if (queryKey) return await baseAxios.get(`${url}`)
+      //   else return await baseAxios.get(url)
 
       default:
         console.log('method error')
