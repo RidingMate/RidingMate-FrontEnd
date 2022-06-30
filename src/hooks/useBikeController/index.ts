@@ -10,17 +10,19 @@ const useBikeController = () => {
     refetchOnWindowFocus: false,
   }
 
-  const companyListQuery = useQuery(
-    [{ scope: 'companies' }] as const,
-    () =>
-      bikeControllerAPI({
-        method: 'get',
-        url: URL.GET_COMPANY_LIST,
-      }),
-    options
-  )
+  const CompanyList = () => {
+    return useQuery(
+      [{ scope: 'companies' }] as const,
+      () =>
+        bikeControllerAPI({
+          method: 'get',
+          url: URL.GET_COMPANY_LIST,
+        }),
+      options
+    )
+  }
 
-  const useModelsByCompany = (company: string | undefined) => {
+  const ModelList = (company: string | undefined) => {
     return useQuery(
       [{ scope: 'models' }, company] as const,
       () =>
@@ -33,10 +35,30 @@ const useBikeController = () => {
     )
   }
 
+  const YearList = (company: string | undefined, model: string | undefined) => {
+    return useQuery(
+      [{ scope: 'years' }, company, model] as const,
+      () =>
+        bikeControllerAPI({
+          method: 'get',
+          url: URL.SEARCH_YEAR,
+          company: company,
+          model: model,
+        }),
+      {
+        ...options,
+        enabled:
+          typeof company === 'string' && typeof model === 'string'
+            ? true
+            : false,
+      }
+    )
+  }
+
   return {
-    companyList:
-      companyListQuery.isSuccess && companyListQuery.data.data.response,
-    useModelsByCompany,
+    CompanyList,
+    ModelList,
+    YearList,
   }
 }
 

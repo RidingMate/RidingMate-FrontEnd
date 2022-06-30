@@ -5,6 +5,7 @@ export interface bikeControllerAPIProps {
   url: string
   data?: FormData
   company?: string
+  model?: string
 }
 
 const bikeControllerAPI = async ({
@@ -12,6 +13,7 @@ const bikeControllerAPI = async ({
   url,
   data,
   company,
+  model,
 }: bikeControllerAPIProps): Promise<AxiosResponse | undefined> => {
   const baseAxios = axios.create({
     headers: {
@@ -24,7 +26,10 @@ const bikeControllerAPI = async ({
   try {
     switch (method) {
       case 'get' || 'GET':
-        if (company) return await baseAxios.get(`${url}?company=${company}`)
+        if (company && !model)
+          return await baseAxios.get(`${url}?company=${company}`)
+        else if (company && model)
+          return await baseAxios.get(`${url}?company=${company}&model=${model}`)
         else return await baseAxios.get(url)
 
       case 'post' || 'POST':

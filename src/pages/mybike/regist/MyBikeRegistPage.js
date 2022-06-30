@@ -39,20 +39,22 @@ const MyBikeRegistPage = () => {
     fileFormData.delete('images')
     setFile('')
   }
-  const [selectedCompany, setSelectedCompany] = useState(null)
-  const { companyList, useModelsByCompany } = useBikeController(null)
-  const companyListArray = Array.from(companyList, (value) => value.content)
-  const { data, isSuccess } = useModelsByCompany(selectedCompany)
-  const modelArrayList = isSuccess
-    ? Array.from(data.data.response, (value) => value.content)
-    : []
+  const [input, setInput] = useState({
+    company: null,
+    model: null,
+  })
+
+  const { CompanyList, ModelList, YearList } = useBikeController(null)
+  const companyRes = CompanyList()
+  const modelRes = ModelList(input.company)
+  const yearRes = YearList(input.company, input.model)
 
   const clickCompany = (e) => {
-    setSelectedCompany(e.target.innerHTML)
+    setInput({ ...input, company: e.target.innerHTML })
   }
 
-  const clickButton = () => {
-    console.log(modelArrayList)
+  const clickModel = (e) => {
+    setInput({ ...input, model: e.target.innerHTML })
   }
 
   const handleSubmit = (e) => {
@@ -74,7 +76,6 @@ const MyBikeRegistPage = () => {
   }
   return (
     <S.Wrap>
-      <button onClick={clickButton}>clikk</button>
       <PageHeader main_title={'MY BIKE'} sub_title={'내 바이크'} />
       <S.Form onSubmit={handleSubmit}>
         <S.Head>새 바이크 등록하기</S.Head>
@@ -127,13 +128,26 @@ const MyBikeRegistPage = () => {
             defaultContent={'선택하세요'}
             onClick={clickCompany}
           >
-            {companyListArray}
+            {companyRes.isSuccess
+              ? Array.from(
+                  companyRes.data.data.response,
+                  (value) => value.content
+                )
+              : ['잠시만 기다려주세요']}
           </Select>
 
           <S.Category>모델명</S.Category>
-          <Select name={'model'} defaultContent={'선택하세요'}>
-            {modelArrayList}
-            {/* {['제조사 없어']} */}
+          <Select
+            name={'model'}
+            defaultContent={'선택하세요'}
+            onClick={clickModel}
+          >
+            {modelRes.isSuccess
+              ? Array.from(
+                  modelRes.data.data.response,
+                  (value) => value.content
+                )
+              : ['제조사를 선택해주세요']}
           </Select>
 
           <S.Div></S.Div>
@@ -146,7 +160,9 @@ const MyBikeRegistPage = () => {
 
           <S.Category>연식</S.Category>
           <Select name={'year'} defaultContent={'선택하세요'}>
-            {makeRangeList(1990, date.getFullYear(), 1, true)}
+            {yearRes.isSuccess
+              ? Array.from(yearRes.data.data.response, (value) => value.content)
+              : ['제조사와 모델을 선택해주세요']}
           </Select>
 
           <S.Category>누적 주행거리(km)</S.Category>
