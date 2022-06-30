@@ -1,7 +1,6 @@
 import { useQuery } from 'react-query'
 import URL from 'src/api/api.config'
 import bikeControllerAPI from 'src/api/BikeControllerAPI'
-// import queryKeys from './queryKeys'
 
 const useBikeController = () => {
   // const queryClient = useQueryClient()
