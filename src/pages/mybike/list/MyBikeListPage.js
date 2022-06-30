@@ -1,15 +1,14 @@
 import { useNavigate } from 'react-router-dom'
+
 import * as S from './MyBikeListPage.style'
 
 import Button from 'src/elements/button/Button'
 import BikeList from 'src/components/mybike/list'
 import PageHeader from 'src/elements/pageHeader'
-// import { getBikeList } from 'src/api/mybike/list/GetListApi'
 
 const MyBikeListPage = ({ myBikeList = [1, 2] }) => {
   const navigate = useNavigate()
-  // const data = getBikeList()
-  // console.log(data)
+
   return (
     <S.Wrap>
       <S.Title>

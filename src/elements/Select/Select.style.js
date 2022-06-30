@@ -48,6 +48,15 @@ const Wrap = styled.div`
 
       .option-item {
         font-size: 14px;
+        text-align: left;
+
+        border: none;
+        background: none;
+
+        margin-bottom: 4px;
+
+        cursor: pointer;
+
         :hover {
           font-weight: 900;
         }

@@ -10,47 +10,69 @@ import Input from 'src/elements/Input'
 import Select from 'src/elements/select'
 import PageHeader from 'src/elements/pageHeader'
 import { makeRangeList } from 'src/hooks/utils'
-import { registBike } from 'src/api/mybike/list/RegistBike'
+import useBikeController from 'src/hooks/useBikeController'
 
 const MyBikeRegistPage = () => {
-  const [imgSrc, setImgSrc] = useState()
-  const imageData = new FormData()
-  const fileReader = new FileReader()
   const date = new Date()
 
+  /* image form data */
+  const [file, setFile] = useState('')
+  let fileReader = new FileReader()
+
+  const fileFormData = new FormData()
+
   const handleChange = (e) => {
-    if (e.target.files.length) {
-      const imgTarget = e.target.files[0]
-      fileReader.readAsDataURL(imgTarget)
-      fileReader.onload = function (e) {
-        setImgSrc(e.target.result)
+    e.preventDefault()
+
+    const image = e.target.files[0]
+
+    if (image) {
+      fileReader.readAsDataURL(image)
+
+      fileReader.onloadend = () => {
+        setFile(fileReader.result)
+        e.target.value = ''
       }
     }
   }
-
   const handleDelete = () => {
-    imageData.delete('images')
-    setImgSrc()
+    fileFormData.delete('images')
+    setFile('')
+  }
+  const [input, setInput] = useState({
+    company: null,
+    model: null,
+  })
+
+  const { CompanyList, ModelList, YearList } = useBikeController(null)
+  const companyRes = CompanyList()
+  const modelRes = ModelList(input.company)
+  const yearRes = YearList(input.company, input.model)
+
+  const clickCompany = (e) => {
+    setInput({ ...input, company: e.target.innerHTML })
+  }
+
+  const clickModel = (e) => {
+    setInput({ ...input, model: e.target.innerHTML })
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    // 나중에 query와 imageData POST
+    // const query = {
+    //   bikeNickName: e.target.bikeNickName.value,
+    //   bikeRole: e.target.bikeRole.checked ? 'representative' : 'normal',
+    //   company: e.target.company.value,
+    //   dateOfPurchase: `${e.target.purchase_year.value}-${String(
+    //     e.target.purchase_month.value
+    //   ).padStart(2, '0')}-01`, // 2022-04-01형식으로 변환하는 작업
+    //   mileage: e.target.mileage.value,
+    //   model: e.target.model.value,
+    //   year: e.target.year.value,
+    // }
 
-    const query = {
-      bikeNickName: e.target.bikeNickName.value,
-      bikeRole: e.target.bikeRole.checked ? 'representative' : 'normal',
-      company: e.target.company.value,
-      dateOfPurchase: `${e.target.purchase_year.value}-${String(
-        e.target.purchase_month.value
-      ).padStart(2, '0')}-01`, // 2022-04-01형식으로 변환하는 작업
-      mileage: e.target.mileage.value,
-      model: e.target.model.value,
-      year: e.target.year.value,
-    }
-
-    imageData?.append('file', e.target.file.files[0])
-
-    registBike(imageData, query)
+    // imageData?.append('file', e.target.file.files[0])
   }
   return (
     <S.Wrap>
@@ -59,7 +81,7 @@ const MyBikeRegistPage = () => {
         <S.Head>새 바이크 등록하기</S.Head>
         <S.Grid>
           <S.Category>
-            <div>이미지({imgSrc ? '1' : '0'}/1)</div>
+            <div>이미지({file ? '1' : '0'}/1)</div>
             <div>선택사항</div>
           </S.Category>
           <S.Div>
@@ -71,8 +93,8 @@ const MyBikeRegistPage = () => {
               accept="image/jpg,image/png,image/jpeg"
               style={{ display: 'none' }}
             />
-            {imgSrc ? (
-              <S.Thumbnail src={imgSrc} alt="bike_image">
+            {file ? (
+              <S.Thumbnail src={file} alt="bike_image">
                 <S.Btn
                   src={regist_button_added_img_close}
                   onClick={handleDelete}
@@ -101,13 +123,31 @@ const MyBikeRegistPage = () => {
           />
 
           <S.Category>제조사</S.Category>
-          <Select name={'company'} defaultContent={'선택하세요'}>
-            {['honda', 'honda']}
+          <Select
+            name={'company'}
+            defaultContent={'선택하세요'}
+            onClick={clickCompany}
+          >
+            {companyRes.isSuccess
+              ? Array.from(
+                  companyRes.data.data.response,
+                  (value) => value.content
+                )
+              : ['잠시만 기다려주세요']}
           </Select>
 
           <S.Category>모델명</S.Category>
-          <Select name={'model'} defaultContent={'선택하세요'}>
-            {['model1', 'model2']}
+          <Select
+            name={'model'}
+            defaultContent={'선택하세요'}
+            onClick={clickModel}
+          >
+            {modelRes.isSuccess
+              ? Array.from(
+                  modelRes.data.data.response,
+                  (value) => value.content
+                )
+              : ['제조사를 선택해주세요']}
           </Select>
 
           <S.Div></S.Div>
@@ -120,7 +160,9 @@ const MyBikeRegistPage = () => {
 
           <S.Category>연식</S.Category>
           <Select name={'year'} defaultContent={'선택하세요'}>
-            {makeRangeList(1990, date.getFullYear(), 1, true)}
+            {yearRes.isSuccess
+              ? Array.from(yearRes.data.data.response, (value) => value.content)
+              : ['제조사와 모델을 선택해주세요']}
           </Select>
 
           <S.Category>누적 주행거리(km)</S.Category>

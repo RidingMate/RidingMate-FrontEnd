@@ -8,6 +8,8 @@ const Select = ({
   children,
   className,
   name,
+  onChange,
+  onClick,
 }) => {
   useEffect(() => {
     // 모든 .input div 선택
@@ -82,12 +84,13 @@ const Select = ({
           placeholder={defaultContent}
           readOnly
           name={name}
+          onChange={onChange}
         />
         <ul className="dropdown">
           {children.map((data, idx) => (
-            <li className="option-item" key={idx}>
+            <button className="option-item" key={idx} onClick={onClick}>
               {data}
-            </li>
+            </button>
           ))}
         </ul>
       </S.Wrap>
