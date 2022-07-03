@@ -1,13 +1,12 @@
 import styled from 'styled-components'
 
 const Wrap = styled.div`
-  /* width: 290px;ㅈ
-  height: 385px; */
+  width: 200px;
 
   cursor: pointer;
 
   .img {
-    width: 200px;
+    width: 100%;
     height: 210px;
     border-radius: 15px;
     object-fit: cover;
@@ -44,7 +43,7 @@ const Wrap = styled.div`
     text-align: right;
     color: #777777;
 
-    margin-top: 10px;
+    margin-top: 20px;
   }
 
   .price {

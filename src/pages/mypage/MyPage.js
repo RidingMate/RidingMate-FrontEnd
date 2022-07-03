@@ -14,7 +14,7 @@ const Tabs = [
 ]
 
 const Wrap = styled.div`
-  width: 70%;
+  width: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,6 +35,11 @@ const Content = styled.div`
   grid-template-columns: 1fr 1fr 1fr 1fr;
   row-gap: 50px;
   column-gap: 20px;
+
+  .item {
+    width: 210px;
+    height: 100%;
+  }
 `
 
 const MyPage = () => {
@@ -66,15 +71,16 @@ const MyPage = () => {
           </TabWrap>
           <Content>
             {myBike.map((item, index) => (
-              <Card
-                key={index}
-                img={item.img}
-                title={item.title}
-                subTitle={item.subTitle}
-                cc={item.cc}
-                km={item.km}
-                price={item.price}
-              />
+              <div className="item" key={index}>
+                <Card
+                  img={item.img}
+                  title={item.title}
+                  subTitle={item.subTitle}
+                  cc={item.cc}
+                  km={item.km}
+                  price={item.price}
+                />
+              </div>
             ))}
           </Content>
         </Wrap>
