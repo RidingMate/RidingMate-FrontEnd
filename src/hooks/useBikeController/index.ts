@@ -2,6 +2,16 @@ import { useQuery } from 'react-query'
 import URL from 'src/api/api.config'
 import bikeControllerAPI from 'src/api/BikeControllerAPI'
 
+export interface BikeRegistFormType {
+  bikeNickName: string
+  bikeRole: 'representative' | 'normal'
+  company: string
+  dateOfPurchase: string
+  mileage: number
+  model: string
+  year: number
+}
+
 const useBikeController = () => {
   // const queryClient = useQueryClient()
   const options = {
@@ -28,7 +38,7 @@ const useBikeController = () => {
         bikeControllerAPI({
           method: 'get',
           url: URL.SEARCH_MODEL,
-          company: company,
+          params: { company: company },
         }),
       { ...options, enabled: typeof company === 'string' ? true : false }
     )
@@ -41,8 +51,7 @@ const useBikeController = () => {
         bikeControllerAPI({
           method: 'get',
           url: URL.SEARCH_YEAR,
-          company: company,
-          model: model,
+          params: { company: company, model: model },
         }),
       {
         ...options,
@@ -54,10 +63,25 @@ const useBikeController = () => {
     )
   }
 
+  const PostBikeInfo = (params: BikeRegistFormType, data: FormData) => {
+    return useQuery(
+      [{ scope: 'regist' }, params, data] as const,
+      () =>
+        bikeControllerAPI({
+          method: 'post',
+          url: URL.BIKE_REGIST,
+          data: data,
+          params: params,
+        }),
+      options
+    )
+  }
+
   return {
     CompanyList,
     ModelList,
     YearList,
+    PostBikeInfo,
   }
 }
 

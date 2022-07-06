@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const Wrap = styled.div`
+const Container = styled.div`
   width: 100%;
 
   display: flex;
@@ -10,7 +10,7 @@ const Wrap = styled.div`
   margin-bottom: 172px;
 `
 
-const Form = styled.form`
+const Wrap = styled.div`
   width: 900px;
 
   margin-top: 58px;
@@ -175,8 +175,8 @@ const Btn = styled.button`
   outline: none;
 `
 export {
+  Container,
   Wrap,
-  Form,
   Head,
   Grid,
   Category,
