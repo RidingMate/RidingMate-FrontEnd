@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import * as S from './MyBikeRegistPage.style'
 
 import regist_button_bike_img from 'src/assets/images/pages/mybike/regist/regist_button_bike_img.svg'
@@ -13,88 +13,97 @@ import { makeRangeList } from 'src/hooks/utils'
 import useBikeController from 'src/hooks/useBikeController'
 
 const MyBikeRegistPage = () => {
+  const navigate = useNavigate()
+
   const date = new Date()
+  const fd = new FormData()
 
-  /* image form data */
-  const [file, setFile] = useState('')
-  let fileReader = new FileReader()
+  const [imgFile, setImgFile] = useState(null) // 이미지 파일
+  const [imgBase64, setImgBase64] = useState([]) // 미리보기
 
-  const fileFormData = new FormData()
+  const [params, setParams] = useState({})
 
-  const handleChange = (e) => {
-    e.preventDefault()
+  const { getCompanyList, getModelList, getYearList, registBikeInfo } =
+    useBikeController()
 
-    const image = e.target.files[0]
+  const companyRes = getCompanyList()
+  const modelRes = getModelList(params.company)
+  const yearRes = getYearList(params.company, params.model)
 
-    if (image) {
-      fileReader.readAsDataURL(image)
-
-      fileReader.onloadend = () => {
-        setFile(fileReader.result)
-        e.target.value = ''
-      }
+  const handleChangeFile = (e) => {
+    setImgFile(event.target.files[0])
+    fd.append('file', event.target.files[0])
+    let reader = new FileReader()
+    reader.readAsDataURL(event.target.files[0])
+    reader.onloadend = () => {
+      const base64 = reader.result
+      setImgBase64(base64)
+      e.target.value = ''
     }
   }
+
+  const handleInput = (e) => {
+    const name = e.target.name
+    const value = name !== 'bikeRole' ? e.target.value : e.target.checked
+    setParams({
+      ...params,
+      [name]: value,
+    })
+  }
+
   const handleDelete = () => {
-    fileFormData.delete('images')
-    setFile('')
-  }
-  const [input, setInput] = useState({
-    company: null,
-    model: null,
-  })
-
-  const { CompanyList, ModelList, YearList } = useBikeController(null)
-  const companyRes = CompanyList()
-  const modelRes = ModelList(input.company)
-  const yearRes = YearList(input.company, input.model)
-
-  const clickCompany = (e) => {
-    setInput({ ...input, company: e.target.innerHTML })
+    fd.delete('file')
+    setImgFile(null)
+    setImgBase64('')
   }
 
-  const clickModel = (e) => {
-    setInput({ ...input, model: e.target.innerHTML })
+  const handleSelect = (e) => {
+    const name = e.target.parentNode.parentNode.firstChild.name
+    const value = e.target.innerHTML
+    setParams({
+      ...params,
+      [name]: value,
+    })
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    // 나중에 query와 imageData POST
-    // const query = {
-    //   bikeNickName: e.target.bikeNickName.value,
-    //   bikeRole: e.target.bikeRole.checked ? 'representative' : 'normal',
-    //   company: e.target.company.value,
-    //   dateOfPurchase: `${e.target.purchase_year.value}-${String(
-    //     e.target.purchase_month.value
-    //   ).padStart(2, '0')}-01`, // 2022-04-01형식으로 변환하는 작업
-    //   mileage: e.target.mileage.value,
-    //   model: e.target.model.value,
-    //   year: e.target.year.value,
-    // }
-
-    // imageData?.append('file', e.target.file.files[0])
+  const handleSubmit = () => {
+    setParams((params) => {
+      const temp = {
+        ...params,
+        dateOfPurchase: `${params.purchase_year}-${String(
+          params.purchase_month
+        ).padStart(2, '0')}-01`,
+        bikeRole: params.bikeRole ? 'representative' : 'normal',
+      }
+      delete temp['purchase_year']
+      delete temp['purchase_month']
+      return temp
+    })
+    registBikeInfo({ fd, params })
+    navigate('/mybike')
   }
+
   return (
-    <S.Wrap>
+    <S.Container>
       <PageHeader main_title={'MY BIKE'} sub_title={'내 바이크'} />
-      <S.Form onSubmit={handleSubmit}>
+      <S.Wrap>
         <S.Head>새 바이크 등록하기</S.Head>
         <S.Grid>
           <S.Category>
-            <div>이미지({file ? '1' : '0'}/1)</div>
+            <div>이미지({imgFile ? '1' : '0'}/1)</div>
             <div>선택사항</div>
           </S.Category>
           <S.Div>
             <input
-              onChange={handleChange}
+              onChange={handleChangeFile}
               type="file"
               id="uploader"
               name="file"
               accept="image/jpg,image/png,image/jpeg"
               style={{ display: 'none' }}
             />
-            {file ? (
-              <S.Thumbnail src={file} alt="bike_image">
+            {imgFile ? (
+              <S.Thumbnail src={imgBase64} alt="bike_image">
                 <S.Btn
                   src={regist_button_added_img_close}
                   onClick={handleDelete}
@@ -117,6 +126,7 @@ const MyBikeRegistPage = () => {
 
           <S.Category>바이크 별칭</S.Category>
           <Input
+            onChange={handleInput}
             type={'text'}
             name={'bikeNickName'}
             placeholder={'내 바이크 1'}
@@ -126,7 +136,7 @@ const MyBikeRegistPage = () => {
           <Select
             name={'company'}
             defaultContent={'선택하세요'}
-            onClick={clickCompany}
+            onClick={handleSelect}
           >
             {companyRes.isSuccess
               ? Array.from(
@@ -140,7 +150,7 @@ const MyBikeRegistPage = () => {
           <Select
             name={'model'}
             defaultContent={'선택하세요'}
-            onClick={clickModel}
+            onClick={handleSelect}
           >
             {modelRes.isSuccess
               ? Array.from(
@@ -159,14 +169,23 @@ const MyBikeRegistPage = () => {
           </S.P>
 
           <S.Category>연식</S.Category>
-          <Select name={'year'} defaultContent={'선택하세요'}>
+          <Select
+            name={'year'}
+            defaultContent={'선택하세요'}
+            onClick={handleSelect}
+          >
             {yearRes.isSuccess
               ? Array.from(yearRes.data.data.response, (value) => value.content)
               : ['제조사와 모델을 선택해주세요']}
           </Select>
 
           <S.Category>누적 주행거리(km)</S.Category>
-          <Input name={'mileage'} type={'text'} placeholder={'입력하세요'} />
+          <Input
+            name={'mileage'}
+            type={'text'}
+            placeholder={'입력하세요'}
+            onChange={handleInput}
+          />
 
           <S.Category>구매일자</S.Category>
           <S.Div justifyContent={'space-between'} alignItems={'center'}>
@@ -174,6 +193,7 @@ const MyBikeRegistPage = () => {
               name={'purchase_year'}
               defaultContent={'선택하세요'}
               width={'170px'}
+              onClick={handleSelect}
             >
               {makeRangeList(1990, date.getFullYear(), 1, true)}
             </Select>
@@ -182,20 +202,20 @@ const MyBikeRegistPage = () => {
               name={'purchase_month'}
               width={'170px'}
               defaultContent={'선택하세요'}
+              onClick={handleSelect}
             >
               {makeRangeList(1, 12)}
             </Select>
             월
           </S.Div>
         </S.Grid>
-
         <S.RegistSection>
           <span>이 바이크를 대표 바이크로 설정</span>
-          <S.CheckBox name="bikeRole" type="checkbox" />
+          <S.CheckBox name="bikeRole" type="checkbox" onChange={handleInput} />
         </S.RegistSection>
-        <Button content={'등록하기'} type={'submit'} />
-      </S.Form>
-    </S.Wrap>
+        <Button content={'등록하기'} type={'submit'} onClick={handleSubmit} />
+      </S.Wrap>
+    </S.Container>
   )
 }
 

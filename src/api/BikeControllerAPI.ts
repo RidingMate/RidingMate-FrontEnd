@@ -4,35 +4,32 @@ export interface bikeControllerAPIProps {
   method: Method
   url: string
   data?: FormData
-  company?: string
-  model?: string
+  params?: object
 }
 
 const bikeControllerAPI = async ({
   method,
   url,
   data,
-  company,
-  model,
+  params,
 }: bikeControllerAPIProps): Promise<AxiosResponse | undefined> => {
   const baseAxios = axios.create({
     headers: {
       Authorization:
         'Bearer eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWR4IjoxMywiaXNTb2NpYWxVc2VyIjpmYWxzZSwic3ViIjoidGVzdDYyMCIsImlhdCI6MTY1NTg3OTgzNywiZXhwIjoxNjYzNjU1ODM3fQ.kHuFMUor8a0I47JvfOJ8bivdCuXR6SmhXr6EWPUZuAeJ9QACooVEQrAFZonqRPb0gV-IXiFvXYXw6QCdhn3nPQ',
       accept: '*/*',
+      'Content-Type': 'multipart/form-data',
     },
   })
 
   try {
     switch (method) {
       case 'get' || 'GET':
-        if (company && !model)
-          return await baseAxios.get(`${url}?company=${company}`)
-        else if (company && model)
-          return await baseAxios.get(`${url}?company=${company}&model=${model}`)
+        if (params) return await baseAxios.get(url, { params })
         else return await baseAxios.get(url)
 
       case 'post' || 'POST':
+        if (params) return await baseAxios.post(url, data, { params })
         return await baseAxios.post(url, data)
 
       // case 'put' || 'PUT':

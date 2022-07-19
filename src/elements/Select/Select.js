@@ -76,6 +76,12 @@ const Select = ({
     return () => window.removeEventListener('click', (e) => handleClose(e))
   }, [])
 
+  // const onClick = (e) => {
+  //   e.preventDefault()
+  //   const value = e.target.innerHTML
+  //   const name = e.target.parentNode.parentNode.firstChild.name
+  // }
+
   return (
     <S.Container className={className}>
       <S.Wrap width={width} height={height}>

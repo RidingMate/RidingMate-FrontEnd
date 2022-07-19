@@ -5,9 +5,13 @@ import * as S from './MyBikeListPage.style'
 import Button from 'src/elements/button/Button'
 import BikeList from 'src/components/mybike/list'
 import PageHeader from 'src/elements/pageHeader'
+import useBikeController from 'src/hooks/useBikeController'
 
-const MyBikeListPage = ({ myBikeList = [1, 2] }) => {
+const MyBikeListPage = () => {
   const navigate = useNavigate()
+
+  const { getBikeList } = useBikeController()
+  const myBikeList = getBikeList()
 
   return (
     <S.Wrap>
