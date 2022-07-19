@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import * as S from './MyBikeRegistPage.style'
 
 import regist_button_bike_img from 'src/assets/images/pages/mybike/regist/regist_button_bike_img.svg'
@@ -13,6 +13,8 @@ import { makeRangeList } from 'src/hooks/utils'
 import useBikeController from 'src/hooks/useBikeController'
 
 const MyBikeRegistPage = () => {
+  const navigate = useNavigate()
+
   const date = new Date()
   const fd = new FormData()
 
@@ -21,11 +23,12 @@ const MyBikeRegistPage = () => {
 
   const [params, setParams] = useState({})
 
-  const { CompanyList, ModelList, YearList } = useBikeController()
+  const { getCompanyList, getModelList, getYearList, registBikeInfo } =
+    useBikeController()
 
-  const companyRes = CompanyList()
-  const modelRes = ModelList(params.company)
-  const yearRes = YearList(params.company, params.model)
+  const companyRes = getCompanyList()
+  const modelRes = getModelList(params.company)
+  const yearRes = getYearList(params.company, params.model)
 
   const handleChangeFile = (e) => {
     setImgFile(event.target.files[0])
@@ -44,7 +47,7 @@ const MyBikeRegistPage = () => {
     const value = name !== 'bikeRole' ? e.target.value : e.target.checked
     setParams({
       ...params,
-      [name]: name !== 'bikeRole' ? value : true ? 'representative' : 'normal',
+      [name]: value,
     })
   }
 
@@ -70,15 +73,14 @@ const MyBikeRegistPage = () => {
         dateOfPurchase: `${params.purchase_year}-${String(
           params.purchase_month
         ).padStart(2, '0')}-01`,
-        bikeRole: params.bikeRole === 'on' ? 'representative' : 'normal',
+        bikeRole: params.bikeRole ? 'representative' : 'normal',
       }
-
       delete temp['purchase_year']
       delete temp['purchase_month']
-
       return temp
     })
-    console.log(params)
+    registBikeInfo({ fd, params })
+    navigate('/mybike')
   }
 
   return (

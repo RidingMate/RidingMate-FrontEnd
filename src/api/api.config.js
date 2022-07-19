@@ -8,7 +8,7 @@ const URL = {
   // POST
   BIKE_REGIST: `${process.env.BASE_URL}/v1/bike/insert`,
   // GET
-  BIKE_GET_LIST: `${process.env.BASE_URL}/v1/bike/list`,
+  GET_BIKE_LIST: `${process.env.BASE_URL}/v1/bike/list`,
   GET_COMPANY_LIST: `${process.env.BASE_URL}/v1/bike/search/company`,
   SEARCH_MODEL: `${process.env.BASE_URL}/v1/bike/search/model`,
   CHANGE_ROLE: `${process.env.BASE_URL}/v1/bike/role`,
